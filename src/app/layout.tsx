@@ -1,7 +1,9 @@
 import '@/styles/globals.css'
-
+import { Inter } from 'next/font/google'
 import { type Metadata } from 'next'
 import { Providers } from './providers'
+
+const inter = Inter({ subsets: ['latin'], weight: ['400', '500', '700'] })
 
 export const metadata: Metadata = {
   title: {
@@ -14,7 +16,9 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt">
-      <body className="overflow-hidden bg-[#7c3aed]">
+      <body
+        className={`${inter.className} overflow-hidden bg-zinc-100 antialiased`}
+      >
         <Providers>{children}</Providers>
       </body>
     </html>
