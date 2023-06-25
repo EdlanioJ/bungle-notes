@@ -9,7 +9,7 @@ export async function generateMetadata() {
 export default function Home() {
   return (
     <div>
-      <h1 className="text-2xl font-bold">Home</h1>
+      <h1 className="text-2xl font-bold leading-tight">Home</h1>
     </div>
   )
 }

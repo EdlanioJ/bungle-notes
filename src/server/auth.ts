@@ -2,11 +2,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
-import {
-  getServerSession,
-  type NextAuthOptions,
-  type DefaultSession,
-} from 'next-auth'
+import { getServerSession } from 'next-auth'
+import type { NextAuthOptions, DefaultSession } from 'next-auth'
 import GithubProvider from 'next-auth/providers/github'
 import { env } from '@/env.mjs'
 import { prisma } from '@/server/db'

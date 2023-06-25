@@ -6,12 +6,12 @@
  *
  * We also create a few inference helpers for input and output types.
  */
-import { httpBatchLink, loggerLink } from '@trpc/client'
-import { type inferRouterInputs, type inferRouterOutputs } from '@trpc/server'
-import superjson from 'superjson'
-import { type AppRouter } from '@/server/api/root'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { useState } from 'react'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { httpBatchLink, loggerLink } from '@trpc/client'
+import superjson from 'superjson'
+import type { inferRouterInputs, inferRouterOutputs } from '@trpc/server'
+import type { AppRouter } from '@/server/api/root'
 import { createTRPCReact } from '@trpc/react-query'
 
 const getBaseUrl = () => {
