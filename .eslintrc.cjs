@@ -26,6 +26,7 @@ const config = {
   ],
   rules: {
     'no-void': 'off',
+    '@typescript-eslint/no-misused-promises': 'off',
     '@typescript-eslint/no-unsafe-assignment': 'off',
     '@typescript-eslint/consistent-type-imports': [
       'warn',

@@ -1,11 +1,13 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
-import { type GetServerSidePropsContext } from 'next'
 import {
   getServerSession,
   type NextAuthOptions,
   type DefaultSession,
 } from 'next-auth'
-import DiscordProvider from 'next-auth/providers/discord'
+import GithubProvider from 'next-auth/providers/github'
 import { env } from '@/env.mjs'
 import { prisma } from '@/server/db'
 
@@ -19,15 +21,19 @@ declare module 'next-auth' {
   interface Session extends DefaultSession {
     user: {
       id: string
+      username: string
+      name: string
+      image: string
       // ...other properties
       // role: UserRole;
     } & DefaultSession['user']
   }
 
-  // interface User {
-  //   // ...other properties
-  //   // role: UserRole;
-  // }
+  interface User {
+    username: string
+    // ...other properties
+    //   // role: UserRole;
+  }
 }
 
 /**
@@ -36,6 +42,9 @@ declare module 'next-auth' {
  * @see https://next-auth.js.org/configuration/options
  */
 export const authOptions: NextAuthOptions = {
+  pages: {
+    signIn: '/login',
+  },
   callbacks: {
     session: ({ session, user }) => ({
       ...session,
@@ -47,9 +56,18 @@ export const authOptions: NextAuthOptions = {
   },
   adapter: PrismaAdapter(prisma),
   providers: [
-    DiscordProvider({
-      clientId: env.DISCORD_CLIENT_ID,
-      clientSecret: env.DISCORD_CLIENT_SECRET,
+    GithubProvider({
+      clientId: env.GITHUB_CLIENT_ID,
+      clientSecret: env.GITHUB_CLIENT_SECRET,
+      profile(profile) {
+        return {
+          id: profile.id.toString(),
+          name: profile.name || profile.login,
+          email: profile.email,
+          username: profile.login,
+          image: profile.avatar_url,
+        }
+      },
     }),
     /**
      * ...add more providers here.
@@ -68,9 +86,6 @@ export const authOptions: NextAuthOptions = {
  *
  * @see https://next-auth.js.org/configuration/nextjs
  */
-export const getServerAuthSession = (ctx: {
-  req: GetServerSidePropsContext['req']
-  res: GetServerSidePropsContext['res']
-}) => {
-  return getServerSession(ctx.req, ctx.res, authOptions)
+export const getServerAuthSession = () => {
+  return getServerSession(authOptions)
 }
