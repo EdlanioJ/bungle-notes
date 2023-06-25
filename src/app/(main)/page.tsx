@@ -1,3 +1,4 @@
+import { Board } from '@/components/Board'
 import { getServerAuthSession } from '@/server/auth'
 
 export async function generateMetadata() {
@@ -8,8 +9,9 @@ export async function generateMetadata() {
 
 export default function Home() {
   return (
-    <div>
+    <div className="space-y-8 px-10 py-12">
       <h1 className="text-2xl font-bold leading-tight">Home</h1>
+      <Board />
     </div>
   )
 }
