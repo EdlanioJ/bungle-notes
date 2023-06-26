@@ -7,6 +7,7 @@ import { api } from '@/utils/api'
 import { useBoardStore } from '@/store/board'
 import { useEffect } from 'react'
 import { Column } from './Column'
+import { Spinner } from '../Spinner'
 
 export function Board() {
   const { data: tasks, isLoading } = api.task.getUserTasks.useQuery()
@@ -23,7 +24,13 @@ export function Board() {
     }
   }, [tasks])
 
-  if (isLoading) return <h1>Loading...</h1>
+  if (isLoading) {
+    return (
+      <Spinner.Container>
+        <Spinner size="lg" />
+      </Spinner.Container>
+    )
+  }
 
   if (!tasks) return null
 
