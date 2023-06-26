@@ -2,7 +2,7 @@ import { ListFilter, Search } from 'lucide-react'
 
 export function SearchFilter() {
   return (
-    <section className="shadow-custom flex overflow-hidden rounded-md bg-white text-zinc-900">
+    <section className="flex overflow-hidden rounded-md bg-white text-zinc-900 shadow-custom">
       <button
         type="button"
         className="flex items-center gap-2 bg-violet-600 px-4 py-3 text-violet-100 transition-colors hover:bg-violet-600/95"
