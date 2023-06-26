@@ -6,12 +6,10 @@ import { signIn } from 'next-auth/react'
 
 export function SignIn() {
   const handleSignIn = async () => {
-    const result = await signIn('github', {
+    await signIn('github', {
       redirect: true,
       callbackUrl: '/',
     })
-
-    console.log(result)
   }
   return (
     <div className=" rounded-lg bg-zinc-50 p-4 shadow-2xl">

@@ -28,7 +28,7 @@ export function TaskCard({ data, index }: Props) {
             {data.tags.map((tag, index) => (
               <span
                 key={index}
-                className="cursor-pointer rounded-lg bg-violet-300 px-2 py-1 text-xs text-violet-600"
+                className="cursor-pointer rounded-lg bg-violet-200 px-2 py-1 text-xs text-violet-600"
               >
                 {tag}
               </span>
