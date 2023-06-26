@@ -11,4 +11,13 @@ declare global {
     tags: string[]
     status: TaskStatus
   }
+
+  interface Column {
+    id: TaskStatus
+    tasks: Task[]
+  }
+
+  interface Board {
+    columns: Map<TaskStatus, Column>
+  }
 }

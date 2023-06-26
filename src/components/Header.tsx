@@ -21,7 +21,7 @@ export function Header({ user }: Props) {
           />
         </div>
 
-        <span className="shadow-custom invisible absolute left-1/2 mt-2 -translate-x-1/2 truncate rounded-lg bg-white px-2 py-1 text-xs font-semibold text-[#403937] transition-all group-hover:visible">
+        <span className="shadow-custom invisible absolute left-1/2 mt-2 -translate-x-1/2 truncate rounded-lg bg-white px-2 py-1 text-xs font-semibold text-zinc-800 transition-all group-hover:visible">
           {user.name}
         </span>
       </div>
