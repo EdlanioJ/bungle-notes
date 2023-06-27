@@ -3,6 +3,7 @@
 import { PlusIcon } from 'lucide-react'
 import { Droppable } from 'react-beautiful-dnd'
 import { TaskCard } from './TaskCard'
+import { useModalStore } from '@/store/modal'
 
 const idToColumnText: {
   [key in TaskStatus]: string
@@ -18,6 +19,14 @@ type Props = {
   data: Column
 }
 export function Column({ data, id, index }: Props) {
+  const openCreateTaskModal = useModalStore(
+    (store) => store.openCreateTaskModal,
+  )
+
+  function handleNewTask() {
+    openCreateTaskModal()
+  }
+
   return (
     <Droppable droppableId={index.toString()} type="card">
       {(provided) => (
@@ -31,6 +40,7 @@ export function Column({ data, id, index }: Props) {
             </div>
             <button
               type="button"
+              onClick={handleNewTask}
               className="flex items-center gap-2 bg-violet-600 px-4 py-3 text-violet-200 transition-colors hover:bg-violet-600/95"
             >
               <PlusIcon />
