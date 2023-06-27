@@ -1,16 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 
+import { useEffect } from 'react'
 import { DragDropContext } from 'react-beautiful-dnd'
 import type { DropResult } from 'react-beautiful-dnd'
+
 import { api } from '@/utils/api'
 import { useBoardStore } from '@/store/board'
-import { useEffect } from 'react'
 import { Column } from './Column'
 import { Spinner } from '../Spinner'
 
 export function Board() {
   const { data: tasks, isLoading } = api.task.getUserTasks.useQuery()
+  const { mutate } = api.task.updateStatus.useMutation()
 
   const [board, createBoard, setBoard] = useBoardStore((store) => [
     store.board,
@@ -92,6 +94,7 @@ export function Board() {
         tasks: finishTasks,
       })
 
+      mutate({ id: movedTask.id, status: finishCol.id })
       setBoard({ ...board, columns: newColumns })
     }
   }
