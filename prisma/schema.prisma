@@ -21,7 +21,7 @@ model Project {
     id          String    @id @default(cuid())
     name        String
     slug        String
-    description String?
+    description String?   @db.Text
     language    String?
     userId      String
     tasks       Task[]
@@ -41,7 +41,7 @@ enum TaskStatus {
 model Task {
     id        String     @id @default(cuid())
     name      String
-    content   String
+    content   String     @db.Text
     tags      String     @db.Text
     userId    String
     projectId String
