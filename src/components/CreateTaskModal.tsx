@@ -8,9 +8,10 @@ import { z } from 'zod'
 import { Controller, type FieldErrors, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'react-hot-toast'
-import { Form } from './Form'
 import { useModalStore } from '@/store/modal'
 import { useDefaultCreateTaskDataStore } from '@/store/create-task'
+import { api } from '@/utils/api'
+import { Form } from './Form'
 
 const createTaskFormSchema = z.object({
   date: z.date(),
@@ -59,8 +60,28 @@ export function CreateTaskModal() {
     closeCreateTaskModal()
   }
 
+  const apiUtils = api.useContext()
+  const { mutate, isLoading } = api.task.create.useMutation({
+    onSuccess: (data) => {
+      apiUtils.task.getUserTasks.setData(undefined, (oldData) => {
+        if (!oldData) return [data]
+        return [data, ...oldData]
+      })
+
+      toast.success(`Tarefa ${data.name} criada com sucesso`)
+      handleCloseModal()
+    },
+  })
+
   const onSubmit = (data: CreateTaskFormData) => {
-    console.log(data)
+    mutate({
+      content: data.content,
+      date: data.date,
+      name: data.name,
+      projectId: data.projectId,
+      status: data.status,
+      tags: data.tags,
+    })
   }
 
   const onError = (errors: FieldErrors<CreateTaskFormData>) => {
@@ -153,7 +174,7 @@ export function CreateTaskModal() {
                   <button
                     className="flex w-24 items-center justify-center rounded-lg border py-2 font-medium transition-colors"
                     type="button"
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || isLoading}
                     onClick={handleCloseModal}
                   >
                     Cancelar
@@ -161,6 +182,7 @@ export function CreateTaskModal() {
                   <button
                     className="flex w-24 items-center justify-center rounded-lg bg-violet-600 py-2 font-medium text-[#CAB3FF] transition-colors hover:bg-[#7C3AED]/95"
                     type="submit"
+                    disabled={isSubmitting || isLoading}
                   >
                     Salvar
                   </button>
