@@ -1,21 +1,82 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-misused-promises */
 'use client'
 
-import { Fragment } from 'react'
+import { Fragment, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
+import { z } from 'zod'
+import { Controller, type FieldErrors, useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { toast } from 'react-hot-toast'
+import { Form } from './Form'
 import { useModalStore } from '@/store/modal'
+import { useDefaultCreateTaskDataStore } from '@/store/create-task'
+
+const createTaskFormSchema = z.object({
+  date: z.date(),
+  projectId: z.string().nonempty('O projeto é obrigatório'),
+  status: z.enum(['todo', 'inProgress', 'done'], {
+    required_error: 'O status é obrigatório',
+  }),
+  tags: z.array(z.string()),
+  content: z.string().nonempty('O detalhe é obrigatório'),
+  name: z.string().nonempty('O nome é obrigatório'),
+})
+
+type CreateTaskFormData = z.infer<typeof createTaskFormSchema>
 
 export function CreateTaskModal() {
   const [isCreateTaskModalOpen, closeCreateTaskModal] = useModalStore(
     (store) => [store.isCreateTaskModalOpen, store.closeCreateTaskModal],
   )
+  const status = useDefaultCreateTaskDataStore((store) => store.status)
+
+  const {
+    handleSubmit,
+    register,
+    reset,
+    control,
+    setValue,
+    formState: { isSubmitting },
+  } = useForm<CreateTaskFormData>({
+    defaultValues: {
+      date: new Date(),
+      tags: [],
+      name: '',
+      projectId: '',
+      content: '',
+      status,
+    },
+    resolver: zodResolver(createTaskFormSchema),
+  })
+
+  useEffect(() => {
+    setValue('status', status)
+  }, [status])
 
   function handleCloseModal() {
+    reset()
     closeCreateTaskModal()
+  }
+
+  const onSubmit = (data: CreateTaskFormData) => {
+    console.log(data)
+  }
+
+  const onError = (errors: FieldErrors<CreateTaskFormData>) => {
+    Object.values(errors).forEach((error) => {
+      error.message && toast.error(error.message)
+    })
   }
 
   return (
     <Transition appear show={isCreateTaskModalOpen} as={Fragment}>
-      <Dialog as="form" className="relative z-50" onClose={handleCloseModal}>
+      <Dialog
+        as="form"
+        onSubmit={handleSubmit(onSubmit, onError)}
+        className="relative z-50"
+        onClose={handleCloseModal}
+      >
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -45,6 +106,65 @@ export function CreateTaskModal() {
                 >
                   Adicionar Bungle
                 </Dialog.Title>
+                <div className="space-y-2">
+                  <Form.Input
+                    placeholder="Titulo da tarefa"
+                    {...register('name')}
+                  />
+
+                  <Form.Textarea
+                    placeholder="Detalhes de tarefa"
+                    {...register('content')}
+                  />
+
+                  <Controller
+                    control={control}
+                    name="status"
+                    render={({ field: { value, onChange } }) => (
+                      <Form.StatusRadio value={value} onChange={onChange} />
+                    )}
+                  />
+
+                  <Controller
+                    control={control}
+                    name="tags"
+                    render={({ field: { value, onChange } }) => (
+                      <Form.TagInput onChange={onChange} value={value} />
+                    )}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Controller
+                    control={control}
+                    name="projectId"
+                    render={({ field: { value, onChange } }) => (
+                      <Form.ProjectCombobox value={value} onChange={onChange} />
+                    )}
+                  />
+                  <Controller
+                    name="date"
+                    control={control}
+                    render={({ field: { value, onChange } }) => (
+                      <Form.DateInput value={value} onChange={onChange} />
+                    )}
+                  />
+                </div>
+                <div className="col-span-2 flex items-end justify-end gap-2">
+                  <button
+                    className="flex w-24 items-center justify-center rounded-lg border py-2 font-medium transition-colors"
+                    type="button"
+                    disabled={isSubmitting}
+                    onClick={handleCloseModal}
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    className="flex w-24 items-center justify-center rounded-lg bg-violet-600 py-2 font-medium text-[#CAB3FF] transition-colors hover:bg-[#7C3AED]/95"
+                    type="submit"
+                  >
+                    Salvar
+                  </button>
+                </div>
               </Dialog.Panel>
             </Transition.Child>
           </div>

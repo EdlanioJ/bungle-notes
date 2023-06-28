@@ -4,6 +4,7 @@ import { PlusIcon } from 'lucide-react'
 import { Droppable } from 'react-beautiful-dnd'
 import { TaskCard } from './TaskCard'
 import { useModalStore } from '@/store/modal'
+import { useDefaultCreateTaskDataStore } from '@/store/create-task'
 
 const idToColumnText: {
   [key in TaskStatus]: string
@@ -22,8 +23,10 @@ export function Column({ data, id, index }: Props) {
   const openCreateTaskModal = useModalStore(
     (store) => store.openCreateTaskModal,
   )
+  const setStatus = useDefaultCreateTaskDataStore((store) => store.setStatus)
 
   function handleNewTask() {
+    setStatus(id)
     openCreateTaskModal()
   }
 
