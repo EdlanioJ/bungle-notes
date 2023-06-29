@@ -1,3 +1,31 @@
+import clsx from 'clsx'
+
+type CountCardProps = {
+  data: {
+    value: number
+    title: string
+  }
+  variant?: 'default' | 'todo' | 'done' | 'inProgress'
+}
+function CountCard({ data, variant = 'default' }: CountCardProps) {
+  return (
+    <div
+      className={clsx(
+        'flex flex-1 flex-col items-center justify-center gap-1 rounded-md border py-1',
+        {
+          'border-dashed border-zinc-500': variant === 'default',
+          'border-red-400 bg-red-500/10': variant === 'todo',
+          'border-yellow-400 bg-yellow-500/10': variant === 'inProgress',
+          'border-green-400 bg-green-500/10': variant === 'done',
+        },
+      )}
+    >
+      <span className="text-sm font-bold leading-tight">{data.value}</span>
+      <p className="text-xs leading-tight text-zinc-400">{data.title}</p>
+    </div>
+  )
+}
+
 type Props = {
   data: Project
 }
@@ -15,38 +43,12 @@ export function ProjectCard({ data }: Props) {
         <p className="text-sm text-zinc-600">{data.description}</p>
       )}
       <div className="flex items-center gap-4 text-xs">
-        <div className="flex flex-1 flex-col items-center justify-center gap-1 rounded-md border border-dashed border-zinc-500 py-1">
-          <span className="text-sm font-bold leading-3">{totalTask}</span>
-          <p className="text-xs font-medium uppercase leading-tight text-zinc-600">
-            Total
-          </p>
-        </div>
-
-        <div className="flex flex-1 flex-col items-center gap-1 rounded-md border border-red-500 bg-red-500/10 p-1">
-          <span className="text-sm font-bold leading-3">
-            {data.statusCount.todo}
-          </span>
-          <p className="text-xs font-medium uppercase leading-tight text-zinc-600">
-            A Fazer
-          </p>
-        </div>
-
-        <div className="flex flex-1 flex-col items-center gap-1 rounded-md border border-yellow-500 bg-yellow-500/10 p-1">
-          <span className="text-sm font-bold leading-3">
-            {data.statusCount.inProgress}
-          </span>
-          <p className="text-xs font-medium uppercase leading-tight text-zinc-600">
-            Fazendo
-          </p>
-        </div>
-        <div className="flex flex-1 flex-col items-center gap-1 rounded-md border border-green-500 bg-green-500/10 p-1">
-          <span className="text-sm font-bold leading-3">
-            {data.statusCount.done}
-          </span>
-          <p className="text-xs font-medium uppercase leading-tight text-zinc-600">
-            Feito
-          </p>
-        </div>
+        <CountCard data={{ value: totalTask, title: 'Total' }} />
+        <CountCard data={{ value: data.statusCount.todo, title: 'A Fazer' }} />
+        <CountCard
+          data={{ value: data.statusCount.inProgress, title: 'Fazendo' }}
+        />
+        <CountCard data={{ value: data.statusCount.done, title: 'Feito' }} />
       </div>
     </div>
   )
