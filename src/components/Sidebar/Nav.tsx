@@ -22,8 +22,12 @@ export function Nav() {
           </Link>
         </li>
         <li>
-          <Link href="/">
-            <NavItem icon={Folder} text="Projetos" />
+          <Link href="/projects">
+            <NavItem
+              icon={Folder}
+              text="Projetos"
+              selected={pathname === '/projects'}
+            />
           </Link>
         </li>
         <li>
