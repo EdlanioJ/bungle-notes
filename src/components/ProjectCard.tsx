@@ -21,7 +21,7 @@ function CountCard({ data, variant = 'default' }: CountCardProps) {
       )}
     >
       <span className="text-sm font-bold leading-tight">{data.value}</span>
-      <p className="text-xs leading-tight text-zinc-400">{data.title}</p>
+      <p className="text-xs leading-tight text-zinc-500">{data.title}</p>
     </div>
   )
 }
@@ -37,18 +37,25 @@ export function ProjectCard({ data }: Props) {
   )
 
   return (
-    <div className="flex w-full flex-col gap-2 rounded-lg bg-white p-4 shadow-custom">
-      <h3 className="text-lg font-medium">{data.name}</h3>
+    <div className="flex w-full flex-col gap-3 rounded-lg bg-white p-4 shadow-custom">
+      <h3 className="text-xl font-medium">{data.name}</h3>
       {data.description && (
-        <p className="text-sm text-zinc-600">{data.description}</p>
+        <p className="text-sm text-zinc-500">{data.description}</p>
       )}
       <div className="flex items-center gap-4 text-xs">
         <CountCard data={{ value: totalTask, title: 'Total' }} />
-        <CountCard data={{ value: data.statusCount.todo, title: 'A Fazer' }} />
+        <CountCard
+          data={{ value: data.statusCount.todo, title: 'A Fazer' }}
+          variant="todo"
+        />
         <CountCard
           data={{ value: data.statusCount.inProgress, title: 'Fazendo' }}
+          variant="inProgress"
         />
-        <CountCard data={{ value: data.statusCount.done, title: 'Feito' }} />
+        <CountCard
+          data={{ value: data.statusCount.done, title: 'Feito' }}
+          variant="done"
+        />
       </div>
     </div>
   )
