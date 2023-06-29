@@ -1,3 +1,4 @@
+import { ProjectList } from '@/components/ProjectList'
 import { PlusIcon } from 'lucide-react'
 
 export const metadata = {
@@ -19,6 +20,7 @@ export default function Projects() {
           <span>Novo</span>
         </button>
       </section>
+      <ProjectList />
     </div>
   )
 }
