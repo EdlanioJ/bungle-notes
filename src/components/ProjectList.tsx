@@ -2,6 +2,7 @@
 
 import { api } from '@/utils/api'
 import { Spinner } from './Spinner'
+import { ProjectCard } from './ProjectCard'
 
 export function ProjectList() {
   const { data: projects, isLoading } =
@@ -19,7 +20,9 @@ export function ProjectList() {
 
   return (
     <section className="flex flex-col gap-4">
-      <pre>{JSON.stringify(projects, null, 2)}</pre>
+      {projects.map((project) => (
+        <ProjectCard data={project} key={project.id} />
+      ))}
     </section>
   )
 }
