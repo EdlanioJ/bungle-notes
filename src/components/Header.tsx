@@ -6,6 +6,7 @@ import Image from 'next/image'
 import type { Session } from 'next-auth'
 import { Pencil } from 'lucide-react'
 import clsx from 'clsx'
+import { useProjectStore } from '@/store/project'
 
 type Props = {
   user: Session['user']
@@ -15,6 +16,7 @@ export function Header({ user }: Props) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [showText, setShowText] = useState(false)
   const pathname = usePathname()
+  const project = useProjectStore((store) => store.project)
 
   useEffect(() => {
     const onScroll = (event: Event) => {
@@ -44,6 +46,12 @@ export function Header({ user }: Props) {
           <h1 className="flex items-center justify-center gap-3 truncate text-center text-xl font-bold text-zinc-800 xl:text-2xl">
             Meus Bungles do dia
             <Pencil className="text-zinc-400" />
+          </h1>
+        )}
+
+        {pathname.includes('/projects/') && showText && project !== null && (
+          <h1 className="flex items-center justify-center gap-2 truncate text-center font-bold text-[#403937] xl:text-2xl">
+            Projeto {project.name}
           </h1>
         )}
       </div>
