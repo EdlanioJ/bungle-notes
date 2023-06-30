@@ -14,6 +14,18 @@ export const taskRouter = createTRPCRouter({
     return TaskMapper.mapCollection(tasks)
   }),
 
+  getUserTasksByProject: protectedProcedure
+    .input(z.object({ projectId: z.string().nonempty() }))
+    .query(async ({ ctx, input }) => {
+      const userId = ctx.session.user.id
+      const tasks = await ctx.prisma.task.findMany({
+        where: { userId, projectId: input.projectId, deletedAt: null },
+        include: { project: { select: { name: true } } },
+      })
+
+      return TaskMapper.mapCollection(tasks)
+    }),
+
   updateStatus: protectedProcedure
     .input(
       z.object({
