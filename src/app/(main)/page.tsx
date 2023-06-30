@@ -1,7 +1,7 @@
 import { Pencil } from 'lucide-react'
-import { Board } from '@/components/Board'
 import { SearchFilter } from '@/components/SearchFilter'
 import { getServerAuthSession } from '@/server/auth'
+import { FeedBoard } from '@/components/FeedBoard'
 
 export async function generateMetadata() {
   const session = await getServerAuthSession()
@@ -18,7 +18,7 @@ export default function Home() {
       </h1>
 
       <SearchFilter />
-      <Board />
+      <FeedBoard />
     </div>
   )
 }
