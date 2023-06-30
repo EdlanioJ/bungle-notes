@@ -23,7 +23,7 @@ export default async function ProjectDetails({ params }: Props) {
   const project = await getData(params.id)
 
   return (
-    <div className="space-y-8 px-10 py-12 text-[#403937] transition-all">
+    <div className="space-y-8 px-10 py-12 text-zinc-700 transition-all">
       <ProjectCover data={project} />
       <ProjectBoard id={params.id} />
     </div>

@@ -50,7 +50,7 @@ export function Header({ user }: Props) {
         )}
 
         {pathname.includes('/projects/') && showText && project !== null && (
-          <h1 className="flex items-center justify-center gap-2 truncate text-center font-bold text-[#403937] xl:text-2xl">
+          <h1 className="flex items-center justify-center gap-2 truncate text-center font-bold text-zinc-700 xl:text-2xl">
             Projeto {project.name}
           </h1>
         )}

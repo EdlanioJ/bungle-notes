@@ -193,7 +193,7 @@ export function CreateTaskModal() {
                     Cancelar
                   </button>
                   <button
-                    className="flex w-24 items-center justify-center rounded-lg bg-violet-600 py-2 font-medium text-[#CAB3FF] transition-colors hover:bg-[#7C3AED]/95"
+                    className="flex w-24 items-center justify-center rounded-lg bg-violet-600 py-2 font-medium text-white transition-colors hover:bg-violet-600/95"
                     type="submit"
                     disabled={isSubmitting || isLoading}
                   >
