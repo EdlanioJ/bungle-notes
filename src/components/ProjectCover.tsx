@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+'use client'
 import { useProjectStore } from '@/store/project'
 import { ProjectCard } from './ProjectCard'
 import { useEffect } from 'react'
@@ -13,7 +15,7 @@ export function ProjectCover({ data }: Props) {
 
   useEffect(() => {
     setProject(data)
-  }, [data, setProject])
+  }, [data])
 
   return <ProjectCard data={project ?? data} />
 }
