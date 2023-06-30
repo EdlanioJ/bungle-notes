@@ -10,8 +10,11 @@ import { useBoardStore } from '@/store/board'
 import { Column } from './Column'
 import { Spinner } from '../Spinner'
 
-export function Board() {
-  const { data: tasks, isLoading } = api.task.getUserTasks.useQuery()
+type Props = {
+  data?: Task[]
+  isLoading: boolean
+}
+export function Board({ isLoading, data: tasks }: Props) {
   const { mutate } = api.task.updateStatus.useMutation()
 
   const [board, createBoard, setBoard] = useBoardStore((store) => [
