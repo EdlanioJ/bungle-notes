@@ -38,7 +38,7 @@ export function ProjectCard({ data }: Props) {
 
   return (
     <div className="flex w-full flex-col gap-3 rounded-lg bg-white p-4 shadow-custom">
-      <h3 className="text-xl font-medium">{data.name}</h3>
+      <div className="text-xl font-medium">{data.name}</div>
       {data.description && (
         <p className="text-sm text-zinc-500">{data.description}</p>
       )}
