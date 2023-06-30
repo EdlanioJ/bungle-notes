@@ -3,6 +3,7 @@
 import { api } from '@/utils/api'
 import { Spinner } from './Spinner'
 import { ProjectCard } from './ProjectCard'
+import Link from 'next/link'
 
 export function ProjectList() {
   const { data: projects, isLoading } =
@@ -21,7 +22,9 @@ export function ProjectList() {
   return (
     <section className="flex flex-col gap-4">
       {projects.map((project) => (
-        <ProjectCard data={project} key={project.id} />
+        <Link href={`/projects/${project.id}`} key={project.id}>
+          <ProjectCard data={project} />
+        </Link>
       ))}
     </section>
   )
