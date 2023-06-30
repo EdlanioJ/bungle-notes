@@ -1,3 +1,4 @@
+import { ProjectCover } from '@/components/ProjectCover'
 import { ssgHelper } from '@/server/helpers/ssgHelper'
 
 async function getData(id: string) {
@@ -22,7 +23,7 @@ export default async function ProjectDetails({ params }: Props) {
 
   return (
     <div className="space-y-8 px-10 py-12 text-[#403937] transition-all">
-      <pre>{JSON.stringify(project, null, 2)}</pre>
+      <ProjectCover data={project} />
     </div>
   )
 }
