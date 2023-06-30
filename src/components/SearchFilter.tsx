@@ -8,7 +8,7 @@ export function SearchFilter() {
         className="flex items-center gap-2 bg-violet-600 px-4 py-3 text-violet-100 transition-colors hover:bg-violet-600/95"
       >
         <ListFilter />
-        Filtrar
+        <span className="hidden md:inline-block">Filtrar</span>
       </button>
       <label
         htmlFor="search"
