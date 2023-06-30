@@ -30,7 +30,10 @@ export function CreateTaskModal() {
   const [isCreateTaskModalOpen, closeCreateTaskModal] = useModalStore(
     (store) => [store.isCreateTaskModalOpen, store.closeCreateTaskModal],
   )
-  const status = useDefaultCreateTaskDataStore((store) => store.status)
+  const [status, projectId] = useDefaultCreateTaskDataStore((store) => [
+    store.status,
+    store.projectId,
+  ])
 
   const {
     handleSubmit,
@@ -54,6 +57,10 @@ export function CreateTaskModal() {
   useEffect(() => {
     setValue('status', status)
   }, [status])
+
+  useEffect(() => {
+    setValue('projectId', projectId)
+  }, [projectId])
 
   function handleCloseModal() {
     reset()
