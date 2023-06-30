@@ -12,6 +12,7 @@ import { useModalStore } from '@/store/modal'
 import { useDefaultCreateTaskDataStore } from '@/store/create-task'
 import { api } from '@/utils/api'
 import { Form } from './Form'
+import { useProjectStore } from '@/store/project'
 
 const createTaskFormSchema = z.object({
   date: z.date(),
@@ -34,6 +35,10 @@ export function CreateTaskModal() {
     store.status,
     store.projectId,
   ])
+
+  const increaseStateCount = useProjectStore(
+    (state) => state.increaseStateCount,
+  )
 
   const {
     handleSubmit,
@@ -75,6 +80,7 @@ export function CreateTaskModal() {
         return [data, ...oldData]
       })
 
+      increaseStateCount(data.status, data.project.id)
       toast.success(`Tarefa ${data.name} criada com sucesso`)
       handleCloseModal()
     },

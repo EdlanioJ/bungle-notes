@@ -7,6 +7,7 @@ import type { DropResult } from 'react-beautiful-dnd'
 
 import { api } from '@/utils/api'
 import { useBoardStore } from '@/store/board'
+import { useProjectStore } from '@/store/project'
 import { Column } from './Column'
 import { Spinner } from '../Spinner'
 
@@ -17,6 +18,10 @@ type Props = {
 export function Board({ isLoading, data: tasks }: Props) {
   const { mutate } = api.task.updateStatus.useMutation()
 
+  const [increaseStateCount, decreaseStateCount] = useProjectStore((state) => [
+    state.increaseStateCount,
+    state.decreaseStateCount,
+  ])
   const [board, createBoard, setBoard] = useBoardStore((store) => [
     store.board,
     store.createBoard,
@@ -98,6 +103,8 @@ export function Board({ isLoading, data: tasks }: Props) {
       })
 
       mutate({ id: movedTask.id, status: finishCol.id })
+      increaseStateCount(finishCol.id, movedTask.project.id)
+      decreaseStateCount(startCol.id, movedTask.project.id)
       setBoard({ ...board, columns: newColumns })
     }
   }
