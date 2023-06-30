@@ -3,7 +3,10 @@ import { Inter } from 'next/font/google'
 import { type Metadata } from 'next'
 import { Providers } from './providers'
 
-const inter = Inter({ subsets: ['latin'], weight: ['400', '500', '700'] })
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '500', '700', '900'],
+})
 
 export const metadata: Metadata = {
   title: {

@@ -30,7 +30,7 @@ export default function Image() {
         }}
       >
         <Logo height={128} width={120} />
-        <span tw="text-white uppercase font-bold text-9xl">Bungle</span>
+        <span tw="text-white uppercase font-black text-9xl">Bungle</span>
       </div>
     ),
     {
