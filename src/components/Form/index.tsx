@@ -1,4 +1,5 @@
 import { DateInput } from './DateInput'
+import { GithubRepoCombobox } from './GithubRepoCombobox'
 import { Input } from './Input'
 import { ProjectCombobox } from './ProjectCombobox'
 import { StatusRadio } from './StatusRadio'
@@ -11,5 +12,6 @@ export const Form = {
   StatusRadio,
   TagInput,
   ProjectCombobox,
+  GithubRepoCombobox,
   DateInput,
 }

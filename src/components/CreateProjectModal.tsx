@@ -1,8 +1,10 @@
 'use client'
 
-import { useModalStore } from '@/store/modal'
-import { Dialog, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
+import { Dialog, Transition } from '@headlessui/react'
+import { useModalStore } from '@/store/modal'
+
+import { Form } from './Form'
 
 export function CreateProjectModal() {
   const [isOpen, closeModal] = useModalStore((store) => [
@@ -38,13 +40,17 @@ export function CreateProjectModal() {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Dialog.Panel className="grid w-full max-w-2xl transform gap-4 space-y-2 overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-custom transition-all md:grid-cols-2">
+              <Dialog.Panel className="grid w-full max-w-2xl transform grid-rows-2 gap-4 space-y-2 overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-custom transition-all md:grid-cols-2 md:grid-rows-1">
                 <Dialog.Title
                   as="h3"
-                  className="col-span-2 pb-2 text-lg font-medium leading-6 text-[#403937]"
+                  className="col-span-2 pb-2 text-lg font-medium leading-6 text-zinc-800"
                 >
                   Novo Projeto
                 </Dialog.Title>
+                <div>
+                  <Form.GithubRepoCombobox />
+                </div>
+                <div />
               </Dialog.Panel>
             </Transition.Child>
           </div>
