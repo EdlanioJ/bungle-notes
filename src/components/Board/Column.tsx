@@ -5,6 +5,7 @@ import { Droppable } from 'react-beautiful-dnd'
 import { TaskCard } from './TaskCard'
 import { useModalStore } from '@/store/modal'
 import { useDefaultCreateTaskDataStore } from '@/store/create-task'
+import { Button } from '../Button'
 
 const idToColumnText: {
   [key in TaskStatus]: string
@@ -41,14 +42,9 @@ export function Column({ data, id, index }: Props) {
                 {data.tasks.length}
               </span>
             </div>
-            <button
-              type="button"
-              onClick={handleNewTask}
-              className="flex items-center gap-2 bg-violet-600 px-4 py-3 text-violet-200 transition-colors hover:bg-violet-600/95"
-            >
-              <PlusIcon />
-              <span className="hidden md:inline-block">Novo</span>
-            </button>
+            <Button icon={PlusIcon} onClick={handleNewTask}>
+              Novo
+            </Button>
           </div>
 
           <div className="space-y-4">
