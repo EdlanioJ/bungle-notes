@@ -1,5 +1,6 @@
 'use client'
 
+import clsx from 'clsx'
 import { Fragment, useState } from 'react'
 import { CheckIcon, ChevronsUpDownIcon } from 'lucide-react'
 import { Combobox, Transition } from '@headlessui/react'
@@ -70,25 +71,30 @@ export function ProjectCombobox({ onChange, value }: Props) {
           <Combobox.Options className="absolute z-50 mt-1 max-h-60 w-full overflow-auto rounded-lg border bg-zinc-200 py-1 text-base sm:text-sm">
             {filteredProjects.length === 0 && query !== '' ? (
               <div className="relative cursor-default select-none px-4 py-2 text-gray-700">
-                Nothing found.
+                Projeto não encontrado
               </div>
             ) : (
               filteredProjects.map((project, index) => (
                 <Combobox.Option
                   key={index}
                   className={({ active }) =>
-                    `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                      active ? 'bg-violet-600 text-white' : 'text-gray-900'
-                    }`
+                    clsx(
+                      'relative cursor-default select-none py-2 pl-10 pr-4',
+                      {
+                        'bg-violet-600 text-white': active,
+                        'text-gray-900': !active,
+                      },
+                    )
                   }
                   value={project.id}
                 >
                   {({ selected }) => (
                     <>
                       <span
-                        className={`block truncate ${
-                          selected ? 'font-medium' : 'font-normal'
-                        }`}
+                        className={clsx('block truncate', {
+                          'font-medium': selected,
+                          'font-normal': !selected,
+                        })}
                       >
                         {project.name}
                       </span>
