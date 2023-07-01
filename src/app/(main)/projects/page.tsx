@@ -1,3 +1,4 @@
+import { CreateProjectModal } from '@/components/CreateProjectModal'
 import { ProjectHeader } from '@/components/ProjectHeader'
 import { ProjectList } from '@/components/ProjectList'
 
@@ -10,6 +11,7 @@ export default function Projects() {
     <div className="space-y-8 px-10 py-12 text-zinc-700 transition-all">
       <ProjectHeader />
       <ProjectList />
+      <CreateProjectModal />
     </div>
   )
 }
