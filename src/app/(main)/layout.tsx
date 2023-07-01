@@ -1,3 +1,4 @@
+import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { Header } from '@/components/Header'
 import { Sidebar } from '@/components/Sidebar'
@@ -10,9 +11,12 @@ export default async function MainLayout({
 }: {
   children: React.ReactNode
 }) {
+  const headerList = headers()
+  console.log({ headerList })
   const session = await getServerAuthSession()
 
-  if (!session) redirect('/login')
+  if (!session)
+    redirect(`/login?callbackUrl=${headerList.get('x-pathname') ?? '/'}`)
 
   return (
     <div className="grid min-h-screen grid-cols-body">
