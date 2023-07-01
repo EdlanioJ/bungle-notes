@@ -44,7 +44,7 @@ export function Board({ isLoading, data: tasks }: Props) {
 
   if (!tasks) return null
 
-  const handleOnDragEnd = (result: DropResult) => {
+  const onDragEnd = (result: DropResult) => {
     const { destination, source } = result
 
     if (!destination) return
@@ -110,7 +110,7 @@ export function Board({ isLoading, data: tasks }: Props) {
   }
 
   return (
-    <DragDropContext onDragEnd={handleOnDragEnd}>
+    <DragDropContext onDragEnd={onDragEnd}>
       <section className="grid w-full grid-cols-1 gap-12 pt-6 xl:grid-cols-3">
         {Array.from(board.columns.entries()).map(([id, column], index) => (
           <Column key={id} id={id} index={index} data={column} />

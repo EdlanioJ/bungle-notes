@@ -17,7 +17,7 @@ export default async function MainLayout({
   return (
     <div className="grid min-h-screen grid-cols-body">
       <Sidebar />
-      <main className="h-screen overflow-y-scroll  bg-zinc-100">
+      <main className="h-screen overflow-y-scroll bg-zinc-100">
         <Header user={session.user} />
         {children}
       </main>
