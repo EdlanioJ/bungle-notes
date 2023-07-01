@@ -10,9 +10,9 @@ export function NavItem({ icon: Icon, text, selected = false }: Props) {
   return (
     <div
       className={clsx(
-        'group flex h-9 w-9 items-center justify-center rounded-md md:h-auto md:w-auto md:justify-normal md:gap-4 md:rounded-none md:bg-transparent',
+        'group flex h-9 w-9 items-center justify-center rounded-md text-white md:h-auto md:w-auto md:justify-normal md:gap-4 md:rounded-none md:bg-transparent',
         {
-          'bg-black/20 font-bold text-white': selected,
+          'bg-black/20 font-bold': selected,
           'hover:bg-black/20 md:hover:bg-transparent': !selected,
         },
       )}

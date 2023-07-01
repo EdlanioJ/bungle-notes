@@ -21,7 +21,9 @@ function CountCard({ data, variant = 'default' }: CountCardProps) {
       )}
     >
       <span className="text-sm font-bold leading-tight">{data.value}</span>
-      <p className="text-xs leading-tight text-zinc-500">{data.title}</p>
+      <p className="text-xs font-semibold leading-tight text-zinc-500">
+        {data.title}
+      </p>
     </div>
   )
 }
