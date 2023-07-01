@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { TRPCError } from '@trpc/server'
 import { ProjectMapper } from '../mappers/project'
 import { createTRPCRouter, protectedProcedure } from '../trpc'
@@ -66,4 +67,36 @@ export const projectRouter = createTRPCRouter({
 
       return ProjectMapper.map(project, taskStatusCount)
     }),
+
+  getUserGithubRepos: protectedProcedure.query(async ({ ctx }) => {
+    const username = ctx.session.user.username
+    const res = await fetch(`https://api.github.com/users/${username}/repos`)
+    if (!res.ok)
+      throw new TRPCError({
+        code: 'INTERNAL_SERVER_ERROR',
+      })
+
+    const jsonRes = await res.json()
+    const repoSchema = z.object({
+      name: z.string(),
+      description: z.string().nullable(),
+      language: z.string().nullable(),
+      id: z.number(),
+    })
+    const responseSchema = z.array(repoSchema)
+    const parsedRepos = responseSchema.parse(jsonRes)
+
+    return parsedRepos.map((repo) => {
+      const formattedName = repo.name
+        .split('-')
+        .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+        .join(' ')
+
+      return {
+        ...repo,
+        name: formattedName,
+        slug: repo.name,
+      }
+    })
+  }),
 })
