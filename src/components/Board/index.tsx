@@ -10,6 +10,7 @@ import { useBoardStore } from '@/store/board'
 import { useProjectStore } from '@/store/project'
 import { Column } from './Column'
 import { Spinner } from '../Spinner'
+import { BoardUtils } from '@/utils/board'
 
 type Props = {
   data?: Task[]
@@ -22,15 +23,14 @@ export function Board({ isLoading, data: tasks }: Props) {
     state.increaseStateCount,
     state.decreaseStateCount,
   ])
-  const [board, createBoard, setBoard] = useBoardStore((store) => [
+  const [board, setBoard] = useBoardStore((store) => [
     store.board,
-    store.createBoard,
     store.setBoard,
   ])
 
   useEffect(() => {
     if (tasks) {
-      createBoard(tasks)
+      setBoard(BoardUtils.create(tasks))
     }
   }, [tasks])
 

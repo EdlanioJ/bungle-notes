@@ -1,7 +1,7 @@
 const columnTypes: TaskStatus[] = ['todo', 'inProgress', 'done']
 
-export class CreateBoard {
-  public static run(tasks: Task[]): Board {
+export class BoardUtils {
+  public static create(tasks: Task[]): Board {
     const columns = tasks.reduce((acc, task) => {
       if (!acc.get(task.status)) {
         acc.set(task.status, {
