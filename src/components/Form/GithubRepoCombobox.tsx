@@ -36,6 +36,7 @@ export function GithubRepoCombobox({ onChange, value }: Props) {
     )
   }
 
+  console.log(githubRepos)
   const filteredRepos =
     query === ''
       ? githubRepos
@@ -52,7 +53,7 @@ export function GithubRepoCombobox({ onChange, value }: Props) {
         <div className="relative w-full cursor-default overflow-hidden rounded-lg border bg-white py-2 pl-3 pr-10 text-left focus-within:outline focus-within:outline-2">
           <Combobox.Input
             className="w-full border-none text-gray-900 focus:outline-none focus:ring-0"
-            placeholder="Seleciona o Projeto"
+            placeholder="Seleciona o Repositório"
             displayValue={(id) =>
               githubRepos.find((repo) => repo.id === id)?.name ?? ''
             }
