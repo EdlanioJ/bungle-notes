@@ -11,7 +11,7 @@ import { useModalStore } from '@/store/modal'
 
 import { Form } from './Form'
 import { toast } from 'react-hot-toast'
-import { type RouterOutputs } from '@/utils/api'
+import { api, type RouterOutputs } from '@/utils/api'
 
 const createProjectFormSchema = z.object({
   language: z.string(),
@@ -31,18 +31,6 @@ export function CreateProjectModal() {
     store.closeCreateProjectModal,
   ])
 
-  useEffect(() => {
-    if (selectedRepo) {
-      reset({
-        description: selectedRepo.description ?? '',
-        github: selectedRepo.slug,
-        language: selectedRepo.language ?? '',
-        name: selectedRepo.name,
-        repoId: selectedRepo.id,
-      })
-    }
-  }, [selectedRepo])
-
   const {
     handleSubmit,
     reset,
@@ -58,8 +46,39 @@ export function CreateProjectModal() {
     resolver: zodResolver(createProjectFormSchema),
   })
 
+  const trpcUtils = api.useContext()
+  const { mutate, isLoading } = api.project.create.useMutation({
+    onSuccess: (data) => {
+      trpcUtils.project.getUserProjects.setData(undefined, (oldData) => {
+        if (!oldData) return [data]
+        return [data, ...oldData]
+      })
+
+      toast.success(`Projeto ${data.name} adicionado com sucesso`)
+      handleCloseModal()
+    },
+  })
+
+  useEffect(() => {
+    if (selectedRepo) {
+      reset({
+        description: selectedRepo.description ?? '',
+        github: selectedRepo.slug,
+        language: selectedRepo.language ?? '',
+        name: selectedRepo.name,
+        repoId: selectedRepo.id,
+      })
+    }
+  }, [reset, selectedRepo])
+
   const onSubmit = (data: CreateProjectFormData) => {
-    console.log(data)
+    mutate({
+      description: data.description,
+      language: data.language,
+      name: data.name,
+      repoId: data.repoId,
+      slug: data.github,
+    })
   }
 
   function onError(errors: FieldErrors<CreateProjectFormData>) {
@@ -145,13 +164,13 @@ export function CreateProjectModal() {
                   <button
                     className="flex w-24 items-center justify-center rounded-lg border py-2 font-medium transition-colors"
                     type="button"
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || isLoading}
                     onClick={handleCloseModal}
                   >
                     Cancelar
                   </button>
                   <button
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || isLoading}
                     className="flex w-24 items-center justify-center rounded-lg bg-[#7C3AED] py-2 font-medium text-[#CAB3FF] transition-colors hover:bg-[#7C3AED]/95"
                     type="submit"
                   >

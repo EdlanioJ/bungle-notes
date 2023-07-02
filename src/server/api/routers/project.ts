@@ -105,7 +105,7 @@ export const projectRouter = createTRPCRouter({
       z.object({
         name: z.string(),
         slug: z.string(),
-        repoId: z.number(),
+        repoId: z.number().nullable(),
         description: z.string().nullable(),
         language: z.string().nullable(),
       }),
