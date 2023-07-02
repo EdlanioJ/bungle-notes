@@ -53,9 +53,7 @@ export function GithubRepoCombobox({ onChange, value }: Props) {
           <Combobox.Input
             className="w-full border-none text-gray-900 focus:outline-none focus:ring-0"
             placeholder="Seleciona o Repositório"
-            displayValue={(id) =>
-              githubRepos.find((repo) => repo.id === id)?.name ?? ''
-            }
+            displayValue={(repo?: GithubRepo) => repo?.name ?? ''}
             onChange={(event) => setQuery(event.target.value)}
           />
 
