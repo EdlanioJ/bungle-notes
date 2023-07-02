@@ -22,7 +22,7 @@ export class DateFormatter {
       dateToCheck.getMonth() === date.getMonth() &&
       dateToCheck.getDate() === date.getDate()
     ) {
-      return 'Hoje'
+      return 'Para hoje'
     }
 
     dateToCheck.setDate(dateToCheck.getDate() + 1)
@@ -32,10 +32,10 @@ export class DateFormatter {
       dateToCheck.getMonth() === date.getMonth() &&
       dateToCheck.getDate() === date.getDate()
     ) {
-      return 'Amanhã'
+      return 'Para amanhã'
     }
 
     const month = months[date.getMonth()] ?? ''
-    return `${date.getDate()}, ${month} de ${date.getFullYear()}`
+    return `Para ${date.getDate()}, ${month} de ${date.getFullYear()}`
   }
 }
