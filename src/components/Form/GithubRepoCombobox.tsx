@@ -36,7 +36,6 @@ export function GithubRepoCombobox({ onChange, value }: Props) {
     )
   }
 
-  console.log(githubRepos)
   const filteredRepos =
     query === ''
       ? githubRepos
