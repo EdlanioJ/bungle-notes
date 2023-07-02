@@ -85,7 +85,7 @@ export const projectRouter = createTRPCRouter({
     })
     const responseSchema = z.array(repoSchema)
     const parsedRepos = responseSchema.parse(jsonRes)
-
+    console.log({ username })
     console.log({ jsonRes })
 
     return parsedRepos.map((repo) => {
