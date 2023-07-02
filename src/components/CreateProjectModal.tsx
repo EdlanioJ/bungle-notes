@@ -15,7 +15,7 @@ import { type RouterOutputs } from '@/utils/api'
 
 const createProjectFormSchema = z.object({
   language: z.string(),
-  repoId: z.number(),
+  repoId: z.number().nullable(),
   description: z.string().nonempty('A descrição é obrigatória'),
   github: z.string().nonempty('O github é obrigatório'),
   name: z.string().nonempty('O nome é obrigatório'),
@@ -30,6 +30,18 @@ export function CreateProjectModal() {
     store.isCreateProjectModalOpen,
     store.closeCreateProjectModal,
   ])
+
+  useEffect(() => {
+    if (selectedRepo) {
+      reset({
+        description: selectedRepo.description ?? '',
+        github: selectedRepo.slug,
+        language: selectedRepo.language ?? '',
+        name: selectedRepo.name,
+        repoId: selectedRepo.id,
+      })
+    }
+  }, [selectedRepo])
 
   const {
     handleSubmit,
@@ -46,17 +58,6 @@ export function CreateProjectModal() {
     resolver: zodResolver(createProjectFormSchema),
   })
 
-  useEffect(() => {
-    if (selectedRepo) {
-      reset({
-        description: selectedRepo.description ?? '',
-        github: selectedRepo.slug,
-        language: selectedRepo.language ?? '',
-        name: selectedRepo.name,
-        repoId: selectedRepo.id,
-      })
-    }
-  }, [selectedRepo])
   const onSubmit = (data: CreateProjectFormData) => {
     console.log(data)
   }
