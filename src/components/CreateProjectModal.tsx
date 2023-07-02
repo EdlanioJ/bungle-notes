@@ -1,23 +1,87 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-misused-promises */
 'use client'
 
-import { Fragment } from 'react'
+import { z } from 'zod'
+import { Fragment, useEffect, useState } from 'react'
+import { type FieldErrors, useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { Dialog, Transition } from '@headlessui/react'
 import { useModalStore } from '@/store/modal'
 
 import { Form } from './Form'
+import { toast } from 'react-hot-toast'
+import { type RouterOutputs } from '@/utils/api'
+
+const createProjectFormSchema = z.object({
+  language: z.string(),
+  repoId: z.number(),
+  description: z.string().nonempty('A descrição é obrigatória'),
+  github: z.string().nonempty('O github é obrigatório'),
+  name: z.string().nonempty('O nome é obrigatório'),
+})
+
+type CreateProjectFormData = z.infer<typeof createProjectFormSchema>
+type GithubRepo = RouterOutputs['project']['getUserGithubRepos'][0]
 
 export function CreateProjectModal() {
+  const [selectedRepo, setSelectedRepo] = useState<GithubRepo | undefined>()
   const [isOpen, closeModal] = useModalStore((store) => [
     store.isCreateProjectModalOpen,
     store.closeCreateProjectModal,
   ])
 
+  const {
+    handleSubmit,
+    reset,
+    setValue,
+    register,
+    formState: { isSubmitting },
+  } = useForm<CreateProjectFormData>({
+    defaultValues: {
+      description: '',
+      language: '',
+      name: '',
+      github: '',
+    },
+    resolver: zodResolver(createProjectFormSchema),
+  })
+
+  useEffect(() => {
+    if (selectedRepo) {
+      setValue('name', selectedRepo.name)
+      setValue('github', selectedRepo.slug)
+      setValue('repoId', selectedRepo.id)
+      selectedRepo.description
+        ? setValue('description', selectedRepo.description)
+        : setValue('description', '')
+      selectedRepo.language
+        ? setValue('language', selectedRepo.language)
+        : setValue('language', '')
+    }
+  }, [selectedRepo])
+  const onSubmit = (data: CreateProjectFormData) => {
+    console.log(data)
+  }
+
+  function onError(errors: FieldErrors<CreateProjectFormData>) {
+    Object.values(errors).forEach((error) => {
+      error.message && toast.error(error.message)
+    })
+  }
+
   function handleCloseModal() {
+    reset()
     closeModal()
   }
   return (
     <Transition appear show={isOpen} as={Fragment}>
-      <Dialog as="form" className="relative z-50" onClose={handleCloseModal}>
+      <Dialog
+        as="form"
+        onSubmit={handleSubmit(onSubmit, onError)}
+        className="relative z-50"
+        onClose={handleCloseModal}
+      >
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -48,9 +112,54 @@ export function CreateProjectModal() {
                   Novo Projeto
                 </Dialog.Title>
                 <div>
-                  <Form.GithubRepoCombobox />
+                  <Form.GithubRepoCombobox
+                    onChange={setSelectedRepo}
+                    value={selectedRepo}
+                  />
                 </div>
-                <div />
+                <div className="flex flex-col gap-2">
+                  <Form.Input
+                    placeholder="Nome do Projeto"
+                    {...register('name')}
+                  />
+
+                  <Form.Input
+                    placeholder="Github do Projeto"
+                    {...register('github')}
+                  />
+
+                  <Form.Input
+                    placeholder="Linguagem do Projeto"
+                    {...register('language')}
+                  />
+
+                  <Form.Textarea
+                    placeholder="Descrição do Projeto"
+                    {...register('description')}
+                  />
+                  <input
+                    type="hidden"
+                    className="hidden"
+                    {...register('repoId')}
+                  />
+                </div>
+                <div className="col-span-2 flex items-end justify-end gap-2">
+                  <button
+                    className="flex w-24 items-center justify-center rounded-lg border py-2 font-medium transition-colors"
+                    type="button"
+                    disabled={isSubmitting}
+                    onClick={handleCloseModal}
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    disabled={isSubmitting}
+                    className="flex w-24 items-center justify-center rounded-lg bg-[#7C3AED] py-2 font-medium text-[#CAB3FF] transition-colors hover:bg-[#7C3AED]/95"
+                    type="submit"
+                  >
+                    Salvar
+                  </button>
+                </div>
               </Dialog.Panel>
             </Transition.Child>
           </div>

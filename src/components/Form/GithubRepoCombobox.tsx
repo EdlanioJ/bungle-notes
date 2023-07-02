@@ -1,13 +1,20 @@
 'use client'
 
 import { Fragment, useState } from 'react'
-import { api } from '@/utils/api'
+import { type RouterOutputs, api } from '@/utils/api'
 import { Spinner } from '../Spinner'
 import { Combobox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronsUpDownIcon } from 'lucide-react'
 import clsx from 'clsx'
 
-export function GithubRepoCombobox() {
+type GithubRepo = RouterOutputs['project']['getUserGithubRepos'][0]
+
+type Props = {
+  value?: GithubRepo
+  onChange: (githubRepo: GithubRepo) => void
+}
+
+export function GithubRepoCombobox({ onChange, value }: Props) {
   const [query, setQuery] = useState('')
   const { data: githubRepos, isLoading } =
     api.project.getUserGithubRepos.useQuery()
@@ -40,7 +47,7 @@ export function GithubRepoCombobox() {
         )
 
   return (
-    <Combobox>
+    <Combobox value={value} onChange={onChange}>
       <div className="relative">
         <div className="relative w-full cursor-default overflow-hidden rounded-lg border bg-white py-2 pl-3 pr-10 text-left focus-within:outline focus-within:outline-2">
           <Combobox.Input
