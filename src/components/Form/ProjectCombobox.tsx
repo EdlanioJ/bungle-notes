@@ -68,7 +68,7 @@ export function ProjectCombobox({ onChange, value }: Props) {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <Combobox.Options className="absolute z-50 mt-1 max-h-60 w-full overflow-auto rounded-lg border bg-zinc-200 py-1 text-base sm:text-sm">
+          <Combobox.Options className="scrollbar absolute z-50 mt-1 max-h-60 w-full overflow-auto rounded-lg border bg-zinc-100 py-1 text-base sm:text-sm">
             {filteredProjects.length === 0 && query !== '' ? (
               <div className="relative cursor-default select-none px-4 py-2 text-gray-700">
                 Projeto não encontrado
