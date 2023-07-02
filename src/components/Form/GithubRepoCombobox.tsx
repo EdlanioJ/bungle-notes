@@ -91,7 +91,7 @@ export function GithubRepoCombobox({ onChange, value }: Props) {
                       },
                     )
                   }
-                  value={repo.id}
+                  value={repo}
                 >
                   {({ selected }) => (
                     <>
