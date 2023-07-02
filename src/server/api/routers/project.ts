@@ -85,8 +85,6 @@ export const projectRouter = createTRPCRouter({
     })
     const responseSchema = z.array(repoSchema)
     const parsedRepos = responseSchema.parse(jsonRes)
-    console.log({ username })
-    console.log({ jsonRes })
 
     return parsedRepos.map((repo) => {
       const formattedName = repo.name
@@ -101,4 +99,30 @@ export const projectRouter = createTRPCRouter({
       }
     })
   }),
+
+  create: protectedProcedure
+    .input(
+      z.object({
+        name: z.string(),
+        slug: z.string(),
+        repoId: z.number(),
+        description: z.string().nullable(),
+        language: z.string().nullable(),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      const userId = ctx.session.user.id
+
+      const project = await ctx.prisma.project.create({
+        data: {
+          name: input.name,
+          slug: input.slug,
+          userId,
+          description: input.description,
+          language: input.language,
+        },
+      })
+
+      return ProjectMapper.map(project)
+    }),
 })

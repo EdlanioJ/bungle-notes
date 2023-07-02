@@ -9,18 +9,20 @@ type CountType = (Prisma.PickArray<
   }
 })[]
 export class ProjectMapper {
-  static map(project: DBProject, count: CountType): Project {
-    const statusCount = count.reduce(
-      (result, response) => {
-        result[response.status] = response._count.status
-        return result
-      },
-      {
-        done: 0,
-        inProgress: 0,
-        todo: 0,
-      },
-    )
+  static map(project: DBProject, count?: CountType): Project {
+    const statusCount = count
+      ? count.reduce(
+          (result, response) => {
+            result[response.status] = response._count.status
+            return result
+          },
+          {
+            done: 0,
+            inProgress: 0,
+            todo: 0,
+          },
+        )
+      : { done: 0, inProgress: 0, todo: 0 }
     return {
       id: project.id,
       name: project.name,
