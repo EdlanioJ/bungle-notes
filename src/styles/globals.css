@@ -12,6 +12,6 @@
   }
 
   .scrollbar::-webkit-scrollbar-thumb {
-    @apply rounded-md bg-violet-600;
+    @apply bg-violet-600;
   }
 }
