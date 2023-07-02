@@ -34,7 +34,6 @@ export function CreateProjectModal() {
   const {
     handleSubmit,
     reset,
-    setValue,
     register,
     formState: { isSubmitting },
   } = useForm<CreateProjectFormData>({
@@ -49,15 +48,13 @@ export function CreateProjectModal() {
 
   useEffect(() => {
     if (selectedRepo) {
-      setValue('name', selectedRepo.name)
-      setValue('github', selectedRepo.slug)
-      setValue('repoId', selectedRepo.id)
-      selectedRepo.description
-        ? setValue('description', selectedRepo.description)
-        : setValue('description', '')
-      selectedRepo.language
-        ? setValue('language', selectedRepo.language)
-        : setValue('language', '')
+      reset({
+        description: selectedRepo.description ?? '',
+        github: selectedRepo.slug,
+        language: selectedRepo.language ?? '',
+        name: selectedRepo.name,
+        repoId: selectedRepo.id,
+      })
     }
   }, [selectedRepo])
   const onSubmit = (data: CreateProjectFormData) => {
