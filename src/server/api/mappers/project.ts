@@ -42,9 +42,7 @@ export class ProjectMapper {
       const count = statusesCount.find(
         (response) => response[0]?.projectId === project.id,
       )
-      if (count) {
-        result.push(ProjectMapper.map(project, count))
-      }
+      result.push(ProjectMapper.map(project, count))
       return result
     }, [])
   }
