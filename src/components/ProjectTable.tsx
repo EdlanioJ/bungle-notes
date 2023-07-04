@@ -44,15 +44,15 @@ export function ProjectTable() {
           )
 
           return (
-            <Link href={`/projects/${project.id}`} key={project.id}>
-              <TableRow>
-                <TableCell className="font-medium">{project.name}</TableCell>
-                <TableCell>{totalTask}</TableCell>
-                <TableCell>{project.statusCount.todo}</TableCell>
-                <TableCell>{project.statusCount.inProgress}</TableCell>
-                <TableCell>{project.statusCount.done}</TableCell>
-              </TableRow>
-            </Link>
+            <TableRow key={project.id}>
+              <TableCell className="font-medium">
+                <Link href={`/projects/${project.id}`}>{project.name}</Link>
+              </TableCell>
+              <TableCell>{totalTask}</TableCell>
+              <TableCell>{project.statusCount.todo}</TableCell>
+              <TableCell>{project.statusCount.inProgress}</TableCell>
+              <TableCell>{project.statusCount.done}</TableCell>
+            </TableRow>
           )
         })}
       </TableBody>
