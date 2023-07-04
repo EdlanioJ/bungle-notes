@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { ArrowLeft, ArrowRight, CalendarIcon } from 'lucide-react'
 
 import { Calendar } from '../Calendar'
 import { useState } from 'react'
@@ -61,6 +61,7 @@ export function DateInput({ onChange, value }: Props) {
       <Disclosure>
         <Disclosure.Button className="flex w-full justify-between rounded-lg border px-3 py-2">
           <span>{DateFormatter.format(value)}</span>
+          <CalendarIcon className="h-5 w-5 text-gray-400" />
         </Disclosure.Button>
         <Disclosure.Panel>
           {({ close }) => (

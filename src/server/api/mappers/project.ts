@@ -16,11 +16,7 @@ export class ProjectMapper {
             result[response.status] = response._count.status
             return result
           },
-          {
-            done: 0,
-            inProgress: 0,
-            todo: 0,
-          },
+          { done: 0, inProgress: 0, todo: 0 },
         )
       : { done: 0, inProgress: 0, todo: 0 }
     return {
