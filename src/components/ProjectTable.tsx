@@ -47,7 +47,7 @@ export function ProjectTable() {
             <TableRow key={project.id}>
               <TableCell className="font-semibold">
                 <Link
-                  className="hover:underline"
+                  className="hover:underline hover:decoration-2 hover:underline-offset-4"
                   href={`/projects/${project.id}`}
                 >
                   {project.name}
