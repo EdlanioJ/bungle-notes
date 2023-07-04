@@ -82,4 +82,31 @@ export const taskRouter = createTRPCRouter({
 
       return TaskMapper.map(task)
     }),
+
+  delete: protectedProcedure
+    .input(
+      z.object({
+        id: z.string().cuid(),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      const userId = ctx.session.user.id
+
+      const task = await ctx.prisma.task.findFirst({
+        where: { id: input.id, userId, deletedAt: null },
+        select: { id: true },
+      })
+
+      if (!task)
+        throw new TRPCError({
+          code: 'BAD_REQUEST',
+          message: 'Task not found',
+        })
+
+      await ctx.prisma.task.update({
+        where: { id: task.id },
+        data: { deletedAt: new Date() },
+        select: { id: true },
+      })
+    }),
 })
