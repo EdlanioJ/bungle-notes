@@ -133,7 +133,7 @@ export function CreateTaskModal() {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Dialog.Panel className="grid w-full max-w-2xl transform grid-cols-2 gap-4 space-y-2 overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-custom transition-all">
+              <Dialog.Panel className="w-full max-w-2xl transform gap-2 overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-custom transition-all sm:flex sm:flex-col md:grid md:grid-cols-2 md:gap-4">
                 <Dialog.Title
                   as="h3"
                   className="col-span-2 pb-2 text-lg font-medium leading-6 text-zinc-800"
