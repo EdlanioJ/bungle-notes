@@ -6,6 +6,7 @@ import { Providers } from './providers'
 const inter = Inter({
   subsets: ['latin'],
   weight: ['400', '500', '700', '900'],
+  variable: '--font-inter',
 })
 
 export const metadata: Metadata = {
@@ -18,10 +19,8 @@ export const metadata: Metadata = {
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt">
-      <body
-        className={`${inter.className} overflow-hidden bg-zinc-100 antialiased`}
-      >
+    <html lang="pt" className={`${inter.variable}`}>
+      <body className="overflow-hidden bg-zinc-100 antialiased">
         <Providers>{children}</Providers>
       </body>
     </html>
