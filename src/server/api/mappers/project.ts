@@ -37,7 +37,6 @@ export class ProjectMapper {
     projects: DBProject[],
     statusesCount: CountType[],
   ): Project[] {
-    console.log({ projects, statusesCount })
     return projects.reduce((result: Project[], project: DBProject) => {
       const count = statusesCount.find(
         (response) => response[0]?.projectId === project.id,

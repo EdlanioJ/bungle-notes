@@ -12,7 +12,6 @@ export default async function MainLayout({
   children: React.ReactNode
 }) {
   const headerList = headers()
-  console.log({ headerList })
   const session = await getServerAuthSession()
 
   if (!session)

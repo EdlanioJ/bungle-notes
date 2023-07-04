@@ -18,10 +18,7 @@ export const projectRouter = createTRPCRouter({
   getUserFullProjects: protectedProcedure.query(async ({ ctx }) => {
     const userId = ctx.session.user.id
     const projects = await ctx.prisma.project.findMany({
-      where: {
-        userId,
-        deletedAt: null,
-      },
+      where: { deletedAt: null, userId },
     })
 
     const statusCountQueries = projects.map((project) =>
