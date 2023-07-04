@@ -26,7 +26,7 @@ export function ProjectTable() {
 
   if (!projects) return null
   return (
-    <Table className="rounded-lg bg-white p-4">
+    <Table className="rounded-lg bg-white shadow-custom">
       <TableHeader>
         <TableRow>
           <TableHead>Nome do Projeto</TableHead>
@@ -45,8 +45,13 @@ export function ProjectTable() {
 
           return (
             <TableRow key={project.id}>
-              <TableCell className="font-medium">
-                <Link href={`/projects/${project.id}`}>{project.name}</Link>
+              <TableCell className="font-semibold">
+                <Link
+                  className="hover:underline"
+                  href={`/projects/${project.id}`}
+                >
+                  {project.name}
+                </Link>
               </TableCell>
               <TableCell>{totalTask}</TableCell>
               <TableCell>{project.statusCount.todo}</TableCell>
