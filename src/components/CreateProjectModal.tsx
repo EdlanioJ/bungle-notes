@@ -49,9 +49,13 @@ export function CreateProjectModal() {
   const trpcUtils = api.useContext()
   const { mutate, isLoading } = api.project.create.useMutation({
     onSuccess: (data) => {
+      trpcUtils.project.getUserFullProjects.setData(undefined, (oldData) => {
+        return oldData ? [data, ...oldData] : [data]
+      })
       trpcUtils.project.getUserProjects.setData(undefined, (oldData) => {
-        if (!oldData) return [data]
-        return [data, ...oldData]
+        return oldData
+          ? [{ id: data.id, name: data.name }, ...oldData]
+          : [{ id: data.id, name: data.name }]
       })
 
       toast.success(`Projeto ${data.name} adicionado com sucesso`)
