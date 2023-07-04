@@ -1,12 +1,38 @@
 'use client'
 
 import { Draggable } from 'react-beautiful-dnd'
+import { TaskActions } from './TaskActions'
+import { api } from '@/utils/api'
+import { toast } from 'react-hot-toast'
+import { useProjectStore } from '@/store/project'
 
 type Props = {
   data: Task
   index: number
 }
 export function TaskCard({ data, index }: Props) {
+  const decreaseStateCount = useProjectStore(
+    (store) => store.decreaseStateCount,
+  )
+  const trpcUtils = api.useContext()
+  const { mutate, isLoading: isDeleting } = api.task.delete.useMutation({
+    onSuccess: (_data, variables) => {
+      trpcUtils.task.getUserTasks.setData(undefined, (oldData) => {
+        return !oldData
+          ? []
+          : oldData.filter((task) => task.id !== variables.id)
+      })
+      decreaseStateCount(data.status, data.project.id)
+      toast.success(`Tarefa ${data.name} deletada com sucesso`)
+    },
+  })
+
+  function handleDelete() {
+    mutate({
+      id: data.id,
+    })
+  }
+
   return (
     <Draggable index={index} draggableId={data.id}>
       {(provided) => (
@@ -20,6 +46,7 @@ export function TaskCard({ data, index }: Props) {
             <span className="truncate rounded-lg border px-2 py-1 text-xs font-semibold text-zinc-500">
               {data.project.name}
             </span>
+            <TaskActions isDeleting={isDeleting} onDelete={handleDelete} />
           </div>
           <h3 className="text-xl font-medium">{data.name}</h3>
           <p className="text-sm text-zinc-500">{data.content}</p>
