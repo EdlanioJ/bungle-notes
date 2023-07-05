@@ -45,7 +45,7 @@ export function ProjectTable() {
           const href = `/projects/${project.id}`
           return (
             <Link key={project.id} href={href} passHref legacyBehavior>
-              <TableRow>
+              <TableRow className="cursor-pointer">
                 <TableCell className="font-semibold">{project.name}</TableCell>
                 <TableCell>{totalTask}</TableCell>
                 <TableCell>{project.statusCount.todo}</TableCell>
