@@ -72,7 +72,7 @@ export function DateInput({ onChange, value }: Props) {
           leaveFrom="opacity-100 translate-y-0"
           leaveTo="opacity-0 translate-y-1"
         >
-          <Popover.Panel>
+          <Popover.Panel className="mt-1">
             {({ close }) => (
               <Calendar>
                 <Calendar.Header>

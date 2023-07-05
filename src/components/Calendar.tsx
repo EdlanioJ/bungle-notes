@@ -7,7 +7,7 @@ type CalendarProps = {
 }
 function Calendar({ children }: CalendarProps) {
   return (
-    <div className="flex flex-col gap-2 rounded-md border bg-white p-2">
+    <div className="flex w-fit flex-col gap-2 rounded-md border bg-white p-2">
       {children}
     </div>
   )
@@ -60,19 +60,18 @@ function WeekLabels() {
 }
 
 type BodyProps = {
-  variant?: 'default' | 'month'
   children: React.ReactNode
 }
 
 function Body({ children }: BodyProps) {
-  return <div className="flex flex-col gap-4">{children}</div>
+  return <div className="flex w-fit flex-col gap-4">{children}</div>
 }
 
 type MonthDaysProps = {
   children: React.ReactNode
 }
 function MonthDays({ children }: MonthDaysProps) {
-  return <div className="grid grid-cols-7 gap-1">{children}</div>
+  return <div className="grid w-fit grid-cols-7 gap-1">{children}</div>
 }
 
 interface DayProps {
