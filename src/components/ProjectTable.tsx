@@ -42,22 +42,17 @@ export function ProjectTable() {
             (acc, total) => acc + total,
             0,
           )
-
+          const href = `/projects/${project.id}`
           return (
-            <TableRow key={project.id}>
-              <TableCell className="font-semibold">
-                <Link
-                  className="hover:underline hover:decoration-2 hover:underline-offset-4"
-                  href={`/projects/${project.id}`}
-                >
-                  {project.name}
-                </Link>
-              </TableCell>
-              <TableCell>{totalTask}</TableCell>
-              <TableCell>{project.statusCount.todo}</TableCell>
-              <TableCell>{project.statusCount.inProgress}</TableCell>
-              <TableCell>{project.statusCount.done}</TableCell>
-            </TableRow>
+            <Link key={project.id} href={href} passHref legacyBehavior>
+              <TableRow>
+                <TableCell className="font-semibold">{project.name}</TableCell>
+                <TableCell>{totalTask}</TableCell>
+                <TableCell>{project.statusCount.todo}</TableCell>
+                <TableCell>{project.statusCount.inProgress}</TableCell>
+                <TableCell>{project.statusCount.done}</TableCell>
+              </TableRow>
+            </Link>
           )
         })}
       </TableBody>
