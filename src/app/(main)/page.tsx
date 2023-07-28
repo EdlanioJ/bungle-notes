@@ -1,13 +1,8 @@
 import { Pencil } from 'lucide-react'
 import { SearchFilter } from '@/components/SearchFilter'
-import { getServerAuthSession } from '@/server/auth'
+// import { getServerAuthSession } from '@/server/auth'
 import { FeedBoard } from '@/components/FeedBoard'
-
-export async function generateMetadata() {
-  const session = await getServerAuthSession()
-
-  return { title: session?.user.name }
-}
+import { ErrorBoundary } from 'react-error-boundary'
 
 export default function Home() {
   return (
@@ -18,7 +13,9 @@ export default function Home() {
       </h1>
 
       <SearchFilter />
-      <FeedBoard />
+      <ErrorBoundary fallback={<p>Something went wrong</p>}>
+        <FeedBoard />
+      </ErrorBoundary>
     </div>
   )
 }
