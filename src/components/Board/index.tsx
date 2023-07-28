@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 
 import { useEffect } from 'react'
@@ -32,7 +31,7 @@ export function Board({ isLoading, data: tasks }: Props) {
     if (tasks) {
       setBoard(BoardUtils.create(tasks))
     }
-  }, [tasks])
+  }, [setBoard, tasks])
 
   if (isLoading) {
     return (

@@ -1,5 +1,3 @@
-'use client'
-
 type SpinnerProps = {
   size?: 'sm' | 'md' | 'lg'
 }

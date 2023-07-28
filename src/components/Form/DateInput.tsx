@@ -1,3 +1,5 @@
+'use client'
+
 import { ArrowLeft, ArrowRight, CalendarIcon } from 'lucide-react'
 
 import { Calendar } from '../Calendar'

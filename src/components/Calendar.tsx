@@ -1,3 +1,5 @@
+'use client'
+
 import clsx from 'clsx'
 import type { Icon as IconType } from 'lucide-react'
 import type { HTMLAttributes } from 'react'

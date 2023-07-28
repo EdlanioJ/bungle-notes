@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-misused-promises */
 'use client'
 
 import { Fragment, useEffect } from 'react'
@@ -61,11 +59,11 @@ export function CreateTaskModal() {
 
   useEffect(() => {
     setValue('status', status)
-  }, [status])
+  }, [setValue, status])
 
   useEffect(() => {
     setValue('projectId', projectId)
-  }, [projectId])
+  }, [projectId, setValue])
 
   function handleCloseModal() {
     reset()
