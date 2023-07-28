@@ -1,6 +1,6 @@
 import type { Project as DBProject, Prisma } from '@prisma/client'
 
-type CountType = (Prisma.PickArray<
+type CountType = (Prisma.PickEnumerable<
   Prisma.TaskGroupByOutputType,
   ('status' | 'projectId')[]
 > & {
@@ -10,15 +10,19 @@ type CountType = (Prisma.PickArray<
 })[]
 export class ProjectMapper {
   static map(project: DBProject, count?: CountType): Project {
-    const statusCount = count
-      ? count.reduce(
-          (result, response) => {
-            result[response.status] = response._count.status
-            return result
-          },
-          { done: 0, inProgress: 0, todo: 0 },
-        )
-      : { done: 0, inProgress: 0, todo: 0 }
+    const statusCount: StatusCount = {
+      done: 0,
+      inProgress: 0,
+      todo: 0,
+    }
+
+    if (count) {
+      count.forEach((result) => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+        statusCount[result.status] = result._count.status
+      })
+    }
+
     return {
       id: project.id,
       name: project.name,
@@ -35,6 +39,7 @@ export class ProjectMapper {
   ): Project[] {
     return projects.reduce((result: Project[], project: DBProject) => {
       const count = statusesCount.find(
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         (response) => response[0]?.projectId === project.id,
       )
       result.push(ProjectMapper.map(project, count))
