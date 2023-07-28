@@ -14,7 +14,7 @@ export function DefaultCreateTask() {
 
   useEffect(() => {
     if (pathname.includes('/projects/') && id) {
-      setProjectId(id)
+      setProjectId(String(id))
     } else {
       setProjectId('')
     }
