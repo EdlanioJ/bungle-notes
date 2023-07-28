@@ -8,7 +8,6 @@ export function SignIn() {
   const handleSignIn = async () => {
     await signIn('github', {
       redirect: true,
-      callbackUrl: '/',
     })
   }
   return (
