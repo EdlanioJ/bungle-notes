@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { TRPCError } from '@trpc/server'
 import { ProjectMapper } from '../mappers/project'
 import { createTRPCRouter, protectedProcedure } from '../trpc'

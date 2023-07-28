@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unknown-property */
 import { Logo } from '@/components/Logo'
 import { ImageResponse } from 'next/server'
 

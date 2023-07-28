@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/unbound-method */
 import type { Task as DBTask } from '@prisma/client'
 
 type TaskWithProject = DBTask & {

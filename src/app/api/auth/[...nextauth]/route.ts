@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { authOptions } from '@/server/auth'
 import NextAuth from 'next-auth/next'
 

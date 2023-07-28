@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 
 import { useDefaultCreateTaskDataStore } from '@/store/create-task'
@@ -18,7 +17,7 @@ export function DefaultCreateTask() {
     } else {
       setProjectId('')
     }
-  }, [pathname, id])
+  }, [pathname, id, setProjectId])
 
   return null
 }
