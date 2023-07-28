@@ -2,6 +2,8 @@ import { CreateProjectModal } from '@/components/CreateProjectModal'
 import { ProjectHeader } from '@/components/ProjectHeader'
 import { ProjectTable } from '@/components/ProjectTable'
 
+export const dynamic = 'force-dynamic'
+
 export const metadata = {
   title: 'Projetos',
 }
