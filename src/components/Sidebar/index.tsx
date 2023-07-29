@@ -17,14 +17,12 @@ export function Sidebar() {
             </span>
             {' />'}
           </h2>
-
-          <button type="button" className="pr-4 md:hidden">
-            <X />
-          </button>
         </div>
-
-        <Nav />
+        <button type="button" className="pr-4 md:hidden">
+          <X />
+        </button>
       </div>
+      <Nav />
     </aside>
   )
 }
