@@ -6,19 +6,20 @@ type Props = {
   text: string
   selected?: boolean
 }
-export function NavItem({ icon: Icon, text, selected = false }: Props) {
+export function NavItem({ icon: Icon, text }: Props) {
   return (
     <div
       className={clsx(
-        'group flex h-9 w-9 items-center justify-center rounded-md text-white md:h-auto md:w-auto md:justify-normal md:gap-4 md:rounded-none md:bg-transparent',
-        {
-          'bg-black/20 font-bold': selected,
-          'hover:bg-black/20 md:hover:bg-transparent': !selected,
-        },
+        'group relative ml-8 flex h-14 items-center gap-4 text-zinc-600 transition-all',
       )}
     >
-      <Icon className="md:font-bold" />
-      <span className="hidden md:inline-block">{text}</span>
+      <Icon
+        size={24}
+        className="transition-all duration-300 group-hover:ml-2"
+      />
+      <span className="inline text-sm font-medium md:hidden lg:inline">
+        {text}
+      </span>
     </div>
   )
 }
