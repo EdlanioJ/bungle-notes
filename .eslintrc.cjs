@@ -17,6 +17,7 @@ const config = {
   extends: ['next/core-web-vitals', '@rocketseat/eslint-config/next'],
   rules: {
     'no-void': 'off',
+    camelcase: 'off',
   },
 }
 

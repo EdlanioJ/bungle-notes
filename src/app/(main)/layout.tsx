@@ -15,7 +15,7 @@ export default async function MainLayout({
   const session = await getServerAuthSession()
 
   if (!session)
-    redirect(`/login?callbackUrl=${headerList.get('x-pathname') ?? '/'}`)
+    redirect(`/signin?callbackUrl=${headerList.get('x-pathname') ?? '/'}`)
 
   return (
     <div className="grid min-h-screen grid-cols-body">

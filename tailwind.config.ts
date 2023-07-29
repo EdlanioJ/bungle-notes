@@ -18,6 +18,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['var(--font-inter)'],
+        code: 'var(-font-code)',
       },
       gridTemplateColumns: {
         body: 'max-content 1fr',
