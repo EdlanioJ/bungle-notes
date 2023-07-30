@@ -65,8 +65,8 @@ export function Column({ data, id, index }: Props) {
             {data.tasks.map((task, index) => (
               <Card key={task.id} data={task} index={index} />
             ))}
+            {provided.placeholder}
           </div>
-          {provided.placeholder}
         </div>
       )}
     </Droppable>
