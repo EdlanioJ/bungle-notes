@@ -1,18 +1,33 @@
-import { type Icon } from 'lucide-react'
+import { cn } from '@/utils/cn'
+import { type LucideIcon } from 'lucide-react'
 import { type HTMLAttributes } from 'react'
 
 interface Props extends HTMLAttributes<HTMLButtonElement> {
-  icon: Icon
+  icon: LucideIcon
+  variant?: 'default' | 'outline'
 }
-export function Button({ icon: IconComp, children, ...rest }: Props) {
+export function Button({
+  icon: Icon,
+  variant = 'default',
+  children,
+  ...rest
+}: Props) {
   return (
     <button
       {...rest}
       type="button"
-      className="flex items-center gap-2 bg-violet-600 px-4 py-3 text-violet-200 transition-colors hover:bg-violet-600/95"
+      className={cn(
+        'flex h-11 w-full items-center justify-center gap-2 rounded-lg text-sm shadow-2xl transition-all duration-300 hover:shadow-none',
+        {
+          'bg-violet-600 text-violet-200 hover:bg-violet-600/95':
+            variant === 'default',
+          'border-2 border-dashed border-blue-500 bg-white text-zinc-400 hover:bg-blue-500 hover:text-white':
+            variant === 'outline',
+        },
+      )}
     >
-      <IconComp />
-      <span className="hidden md:inline-block">{children}</span>
+      <Icon size={18} />
+      {children}
     </button>
   )
 }

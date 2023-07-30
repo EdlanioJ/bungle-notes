@@ -1,11 +1,12 @@
 'use client'
 
-import { PlusIcon } from 'lucide-react'
+import { MoreHorizontal, PlusIcon } from 'lucide-react'
 import { Droppable } from 'react-beautiful-dnd'
-import { TaskCard } from './TaskCard'
+import { Card } from './Card'
 import { useModalStore } from '@/store/modal'
 import { useDefaultCreateTaskDataStore } from '@/store/create-task'
 import { Button } from '../Button'
+import clsx from 'clsx'
 
 const idToColumnText: {
   [key in TaskStatus]: string
@@ -34,22 +35,35 @@ export function Column({ data, id, index }: Props) {
   return (
     <Droppable droppableId={index.toString()} type="card">
       {(provided) => (
-        <div {...provided.droppableProps} ref={provided.innerRef}>
-          <div className="mb-4 flex items-center justify-between overflow-hidden rounded-lg bg-white pl-4 shadow-custom">
-            <div className="flex items-center justify-center gap-2 text-center text-lg font-bold">
+        <div
+          {...provided.droppableProps}
+          ref={provided.innerRef}
+          className="h-full space-y-4"
+        >
+          <header className="flex h-11 items-center justify-between pr-2 text-zinc-600">
+            <div className="flex items-center justify-center gap-2 text-center font-semibold text-zinc-500">
+              <div
+                className={clsx('h-2 w-2 rounded-full shadow-2xl', {
+                  'bg-red-400': id === 'todo',
+                  'bg-amber-400': id === 'inProgress',
+                  'bg-green-600': id === 'done',
+                })}
+              />
               {idToColumnText[id]}
-              <span className="flex h-5 items-center justify-center rounded-md bg-zinc-300 p-1.5 text-center text-xs font-semibold">
-                {data.tasks.length}
-              </span>
+              <span className="flex">({data.tasks.length})</span>
             </div>
-            <Button icon={PlusIcon} onClick={handleNewTask}>
-              Novo
-            </Button>
-          </div>
 
-          <div className="space-y-4">
+            <button>
+              <MoreHorizontal />
+            </button>
+          </header>
+
+          <Button onClick={handleNewTask} variant="outline" icon={PlusIcon}>
+            Adicionar Nova Tarefa
+          </Button>
+          <div className="space-y-2">
             {data.tasks.map((task, index) => (
-              <TaskCard key={task.id} data={task} index={index} />
+              <Card key={task.id} data={task} index={index} />
             ))}
           </div>
           {provided.placeholder}
