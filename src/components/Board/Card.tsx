@@ -20,7 +20,7 @@ export function Card({ data, index }: Props) {
             {data.tags.map((tag, index) => (
               <span
                 key={index}
-                className="cursor-pointer rounded-lg bg-white px-2 py-1 text-xs text-violet-600"
+                className="cursor-pointer rounded-lg bg-violet-600 px-2 py-1 text-xs text-white"
               >
                 {tag}
               </span>
