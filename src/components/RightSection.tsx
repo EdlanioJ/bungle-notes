@@ -65,7 +65,6 @@ export function RightSection({ user }: Props) {
           </div>
         </div>
       </div>
-      Right Section
     </div>
   )
 }
