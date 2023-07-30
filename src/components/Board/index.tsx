@@ -110,7 +110,7 @@ export function Board({ isLoading, data: tasks }: Props) {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <section className="grid w-full grid-cols-1 gap-12 pt-6 xl:grid-cols-3">
+      <section className="grid w-full grid-cols-1 gap-6 pt-6 xl:grid-cols-3">
         {Array.from(board.columns.entries()).map(([id, column], index) => (
           <Column key={id} id={id} index={index} data={column} />
         ))}
