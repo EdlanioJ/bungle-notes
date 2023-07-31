@@ -1,6 +1,9 @@
+'use client'
+
 import { Bell, Menu, MoreVertical, Plus, Volume2 } from 'lucide-react'
 import type { Session } from 'next-auth'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
+import { useSidebar } from '@/context/sidebar'
 
 function getInitialsNames(fullname: string) {
   const names = fullname.split(' ')
@@ -17,10 +20,12 @@ type Props = {
   user: Session['user']
 }
 export function RightSection({ user }: Props) {
+  const { handleOpenSidebar } = useSidebar()
+
   return (
     <div className="mx-auto mb-16 w-11/12 md:sticky md:top-0 md:mx-0 md:mb-0 md:w-auto md:pt-5">
       <div className="fixed left-0 top-0 z-10 flex h-16 w-full items-center justify-between gap-2 bg-white px-4 shadow-lg md:relative md:h-auto md:w-auto md:justify-end md:gap-8 md:bg-inherit md:px-0 md:shadow-none">
-        <button type="button" className="md:hidden">
+        <button type="button" onClick={handleOpenSidebar} className="md:hidden">
           <Menu size={24} className="transition-all duration-300" />
         </button>
 
