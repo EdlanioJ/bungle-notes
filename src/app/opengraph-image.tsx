@@ -1,4 +1,3 @@
-import { Logo } from '@/components/Logo'
 import { ImageResponse } from 'next/server'
 
 // Route segment config
@@ -19,7 +18,7 @@ export default function Image() {
       // ImageResponse JSX element
       <div
         style={{
-          backgroundColor: '#7C3AED',
+          backgroundColor: '#f4f4f5',
           width: '100%',
           height: '100%',
           display: 'flex',
@@ -28,8 +27,12 @@ export default function Image() {
           gap: 24,
         }}
       >
-        <Logo height={128} width={120} />
-        <span tw="text-white uppercase font-black text-9xl">Bungle</span>
+        <span tw="mb-2 self-center font-code text-9xl font-bold leading-none text-zinc-600">
+          {'<'}
+          <span tw="text-pink-600">KANBAN</span>4
+          <span tw="text-teal-600">DEV</span>
+          {' />'}
+        </span>
       </div>
     ),
     {

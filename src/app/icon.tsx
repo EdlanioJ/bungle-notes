@@ -1,4 +1,3 @@
-import { Logo } from '@/components/Logo'
 import { ImageResponse } from 'next/server'
 
 export const runtime = 'edge'
@@ -16,17 +15,18 @@ export default function Icon() {
     (
       <div
         style={{
-          background: '#7C3AED',
+          background:
+            'linear-gradient(180deg, rgba(219,39,119,1) 50%, rgba(13,148,136,1) 50%)',
           width: '100%',
           height: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          color: 'white',
+          color: '#f4f4f5',
           borderRadius: 8,
         }}
       >
-        <Logo width={20} height={24} />
+        <span tw="font-code">K</span>
       </div>
     ),
     {
