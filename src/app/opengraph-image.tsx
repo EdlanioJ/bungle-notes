@@ -23,11 +23,12 @@ export default function Image() {
           height: '100%',
           display: 'flex',
           alignItems: 'center',
+          fontWeight: '700',
           justifyContent: 'center',
           gap: 24,
         }}
       >
-        <span tw="mb-2 self-center font-code text-9xl font-bold leading-none text-zinc-600">
+        <span tw="mb-2 self-center font-code text-9xl font-bold leading-none text-zinc-600 antialiased">
           {'<'}
           <span tw="text-pink-600">KANBAN</span>4
           <span tw="text-teal-600">DEV</span>
