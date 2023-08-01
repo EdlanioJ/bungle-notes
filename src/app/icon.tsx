@@ -23,6 +23,8 @@ export default function Icon() {
           alignItems: 'center',
           justifyContent: 'center',
           color: '#f4f4f5',
+          fontSize: 24,
+          fontWeight: '700',
           borderRadius: 8,
         }}
       >
