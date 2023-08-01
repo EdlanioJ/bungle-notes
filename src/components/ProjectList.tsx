@@ -23,18 +23,16 @@ export function ProjectList() {
       {projects.map((project) => (
         <div
           key={project.id}
-          className="rounded-lg bg-white p-4 shadow-2xl hover:shadow-none"
+          className="truncate rounded-lg bg-white p-4 shadow-2xl hover:shadow-none"
         >
-          <div>
-            <Link href={`/projects/${project.id}`}>
-              <h3 className="truncate text-sm font-bold hover:underline">
-                {project.name}
-              </h3>
-            </Link>
-            <p className="truncate text-xs text-zinc-500">
-              {project.description}
-            </p>
-          </div>
+          <Link href={`/projects/${project.id}`}>
+            <h3 className="truncate text-sm font-bold hover:underline">
+              {project.name}
+            </h3>
+          </Link>
+          <p className="truncate text-xs text-zinc-500">
+            {project.description}
+          </p>
         </div>
       ))}
     </div>
