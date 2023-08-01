@@ -19,11 +19,11 @@ export function ProjectList() {
   if (!projects) return null
 
   return (
-    <div className="">
+    <div className="flex w-full flex-col gap-1">
       {projects.map((project) => (
         <div
           key={project.id}
-          className="w-full overflow-hidden rounded-lg bg-white p-4 shadow-2xl hover:shadow-none"
+          className="rounded-lg bg-white p-4 shadow-2xl hover:shadow-none"
         >
           <div>
             <Link href={`/projects/${project.id}`}>
