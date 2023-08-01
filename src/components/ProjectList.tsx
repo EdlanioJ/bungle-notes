@@ -19,7 +19,7 @@ export function ProjectList() {
   if (!projects) return null
 
   return (
-    <div className="flex w-full flex-col gap-1">
+    <div className="flex flex-col gap-1">
       {projects.map((project) => (
         <div
           key={project.id}
