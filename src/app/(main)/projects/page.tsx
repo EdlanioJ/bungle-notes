@@ -1,6 +1,5 @@
 import { CreateProjectModal } from '@/components/CreateProjectModal'
-import { ProjectHeader } from '@/components/ProjectHeader'
-import { ProjectTable } from '@/components/ProjectTable'
+import { ProjectList } from '@/components/ProjectList'
 
 export const dynamic = 'force-dynamic'
 
@@ -10,9 +9,9 @@ export const metadata = {
 
 export default function Projects() {
   return (
-    <div className="space-y-8 px-10 py-12 text-zinc-700 transition-all">
-      <ProjectHeader />
-      <ProjectTable />
+    <div className="flex h-full w-full flex-col gap-6 md:pb-6">
+      <h1 className="text-xl font-bold text-zinc-800">Projetos</h1>
+      <ProjectList />
       <CreateProjectModal />
     </div>
   )

@@ -2,7 +2,6 @@
 
 import { api } from '@/utils/api'
 import { Spinner } from './Spinner'
-import { ProjectCard } from './ProjectCard'
 import Link from 'next/link'
 
 export function ProjectList() {
@@ -20,12 +19,24 @@ export function ProjectList() {
   if (!projects) return null
 
   return (
-    <section className="flex flex-col gap-4">
+    <div className="">
       {projects.map((project) => (
-        <Link href={`/projects/${project.id}`} key={project.id}>
-          <ProjectCard data={project} />
-        </Link>
+        <div
+          key={project.id}
+          className="w-full overflow-hidden rounded-lg bg-white p-4 shadow-2xl hover:shadow-none"
+        >
+          <div>
+            <Link href={`/projects/${project.id}`}>
+              <h3 className="truncate text-sm font-bold hover:underline">
+                {project.name}
+              </h3>
+            </Link>
+            <p className="truncate text-xs text-zinc-500">
+              {project.description}
+            </p>
+          </div>
+        </div>
       ))}
-    </section>
+    </div>
   )
 }
