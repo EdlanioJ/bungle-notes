@@ -11,9 +11,13 @@ import {
 } from 'lucide-react'
 
 import { NavItem } from './NavItem'
+import { signOut } from 'next-auth/react'
 
 export function Nav() {
   const pathname = usePathname()
+  async function handleSignOut() {
+    await signOut()
+  }
 
   return (
     <nav className="relative top-6 flex h-[92vh] flex-col rounded-xl bg-white transition-all duration-300 hover:shadow-none md:h-[86vh] md:shadow-2xl">
@@ -37,7 +41,10 @@ export function Nav() {
       <Link href="/">
         <NavItem icon={Cog} text="Ajustes" />
       </Link>
-      <button className="absolute bottom-8 ml-8 flex h-14 w-full items-center gap-4 text-zinc-600 transition-all">
+      <button
+        onClick={handleSignOut}
+        className="absolute bottom-8 ml-8 flex h-14 w-full items-center gap-4 text-zinc-600 transition-all"
+      >
         <LogOut size={24} className=" transition-all duration-300" />
         <h3 className="inline text-sm font-medium md:hidden lg:inline">
           Logout
