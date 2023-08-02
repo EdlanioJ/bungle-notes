@@ -26,7 +26,7 @@ export function ProjectList() {
           className="rounded-lg bg-white p-4 shadow-2xl  hover:shadow-none"
         >
           <Link href={`/projects/${project.id}`}>
-            <h3 className="text-sm font-bold hover:underline">
+            <h3 className="w-fit text-sm font-bold hover:underline">
               {project.name}
             </h3>
           </Link>

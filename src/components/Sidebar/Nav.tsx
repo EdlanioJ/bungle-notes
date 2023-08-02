@@ -2,7 +2,13 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { File, LogOut, LayoutDashboard, FolderKanban, Cog } from 'lucide-react'
+import {
+  LogOut,
+  LayoutDashboard,
+  FolderKanban,
+  Cog,
+  LineChart,
+} from 'lucide-react'
 
 import { NavItem } from './NavItem'
 
@@ -26,7 +32,7 @@ export function Nav() {
         />
       </Link>
       <Link href="/">
-        <NavItem icon={File} text="Relatórios" />
+        <NavItem icon={LineChart} text="Relatórios" />
       </Link>
       <Link href="/">
         <NavItem icon={Cog} text="Ajustes" />
