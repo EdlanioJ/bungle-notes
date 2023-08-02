@@ -27,10 +27,11 @@ export function ProjectList() {
           className="flex items-center justify-between gap-2 rounded-lg bg-white p-4 shadow-2xl  hover:shadow-none"
         >
           <div className="w-full">
-            <Link href={`/projects/${project.id}`}>
-              <h3 className="w-fit text-sm font-bold hover:underline">
-                {project.name}
-              </h3>
+            <Link
+              href={`/projects/${project.id}`}
+              className="text-sm font-bold hover:underline"
+            >
+              {project.name}
             </Link>
             <p className="text-xs text-zinc-500">{project.description}</p>
           </div>
