@@ -24,7 +24,7 @@ export function ProjectList() {
       {projects.map((project) => (
         <div
           key={project.id}
-          className="flex items-center rounded-lg bg-white p-4 shadow-2xl  hover:shadow-none"
+          className="flex items-center justify-between rounded-lg bg-white p-4 shadow-2xl  hover:shadow-none"
         >
           <div>
             <Link href={`/projects/${project.id}`}>
@@ -34,8 +34,8 @@ export function ProjectList() {
             </Link>
             <p className="text-xs text-zinc-500">{project.description}</p>
           </div>
-          <button className="h-8 w-8 rounded-full">
-            <MoreHorizontal />
+          <button className="grid h-6 w-6 place-content-center rounded-full border">
+            <MoreHorizontal size={16} />
           </button>
         </div>
       ))}
