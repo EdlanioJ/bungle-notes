@@ -34,7 +34,7 @@ export function ProjectList() {
             </Link>
             <p className="text-xs text-zinc-500">{project.description}</p>
           </div>
-          <button className="grid h-6 place-content-center rounded-full border p-1">
+          <button className="grid h-6 w-6 min-w-[1.5rem] place-content-center rounded-full border">
             <MoreHorizontal size={16} />
           </button>
         </div>
