@@ -2,11 +2,15 @@
 
 import { signIn } from 'next-auth/react'
 import { Github } from './icons'
+import { useSearchParams } from 'next/navigation'
 
 export function SignInButton() {
+  const searchParams = useSearchParams()
   const handleSignIn = async () => {
+    const callbackUrl = searchParams.get('callbackUrl')
     await signIn('github', {
       redirect: true,
+      callbackUrl: callbackUrl ?? '/',
     })
   }
 
