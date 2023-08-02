@@ -24,9 +24,9 @@ export function ProjectList() {
       {projects.map((project) => (
         <div
           key={project.id}
-          className="flex items-center justify-between rounded-lg bg-white p-4 shadow-2xl  hover:shadow-none"
+          className="flex items-center justify-between gap-2 rounded-lg bg-white p-4 shadow-2xl  hover:shadow-none"
         >
-          <div>
+          <div className="w-full">
             <Link href={`/projects/${project.id}`}>
               <h3 className="w-fit text-sm font-bold hover:underline">
                 {project.name}
@@ -34,7 +34,7 @@ export function ProjectList() {
             </Link>
             <p className="text-xs text-zinc-500">{project.description}</p>
           </div>
-          <button className="grid h-6 w-6 place-content-center rounded-full border">
+          <button className="grid h-6 place-content-center rounded-full border p-2">
             <MoreHorizontal size={16} />
           </button>
         </div>
