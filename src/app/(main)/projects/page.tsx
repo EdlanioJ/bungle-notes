@@ -14,7 +14,11 @@ export default function Projects() {
     <div className="flex h-full w-full flex-col gap-6 md:pb-6">
       <div className="flex justify-between">
         <h1 className="text-xl font-bold text-zinc-800">Projetos</h1>
-        <Button className="h-8 w-auto px-2" variant="secondary" icon={PlusIcon}>
+        <Button
+          className="h-8 w-auto px-2 text-xs font-bold"
+          variant="secondary"
+          icon={PlusIcon}
+        >
           Novo Projeto
         </Button>
       </div>

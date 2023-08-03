@@ -25,7 +25,7 @@ export function Button({
             variant === 'primary',
           'border-2 border-dashed border-blue-500 bg-white text-zinc-400 hover:bg-blue-500 hover:text-white':
             variant === 'outline',
-          'bg-zinc-400 text-blue-500 hover:bg-zinc-300':
+          'bg-zinc-300 text-blue-500 hover:bg-zinc-200':
             variant === 'secondary',
         },
       )}
