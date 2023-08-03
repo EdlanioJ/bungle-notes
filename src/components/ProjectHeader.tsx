@@ -7,13 +7,16 @@ import { useModalStore } from '@/store/modal'
 export function ProjectHeader() {
   const handleOpenModal = useModalStore((store) => store.openCreateProjectModal)
   return (
-    <section className="flex w-full items-center justify-between overflow-hidden rounded-lg bg-white pl-4 shadow-custom">
-      <h2 className="text-center text-xl font-bold text-zinc-700 xl:text-3xl">
-        Projetos
-      </h2>
-      <Button onClick={handleOpenModal} icon={PlusIcon}>
-        Novo
+    <div className="flex justify-between">
+      <h1 className="text-xl font-bold text-zinc-800">Projetos</h1>
+      <Button
+        onClick={handleOpenModal}
+        className="h-8 w-auto gap-1 px-2 text-xs font-bold"
+        variant="secondary"
+        icon={PlusIcon}
+      >
+        Novo Projeto
       </Button>
-    </section>
+    </div>
   )
 }
