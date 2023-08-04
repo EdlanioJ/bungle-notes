@@ -6,9 +6,9 @@ import { useEffect } from 'react'
 const statusToText: {
   [key in TaskStatus]: string
 } = {
-  done: 'Feito',
-  inProgress: 'Fazendo',
   todo: 'A fazer',
+  inProgress: 'Fazendo',
+  done: 'Feito',
 }
 
 type Props = {
@@ -45,15 +45,17 @@ export function ProjectCover({ data }: Props) {
         <p className="text-sm text-zinc-600">{value.description}</p>
       )}
 
-      <div className="mt-4 flex w-full justify-between divide-x rounded-xl bg-white p-4 shadow-2xl transition-all duration-300 hover:shadow-none">
+      <div className="mt-4 flex w-full justify-between gap-2 divide-x rounded-xl bg-white p-4 shadow-2xl transition-all duration-300 hover:shadow-none">
         <div>
-          <p>Total</p>
+          <p className="text-sm text-zinc-600">Total</p>
           <h3>{totalTask}</h3>
         </div>
         {statusCount.map((status) => (
           <div key={status.status}>
-            <p>{statusToText[status.status]}</p>
-            <h3>{status.count}</h3>
+            <p className="text-sm text-zinc-600">
+              {statusToText[status.status]}
+            </p>
+            <h3 className="text-sm font-bold text-zinc-600">{status.count}</h3>
           </div>
         ))}
       </div>
