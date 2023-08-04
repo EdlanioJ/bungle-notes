@@ -25,7 +25,7 @@ export default async function ProjectDetails({ params }: Props) {
   const project = await getData(params.id)
 
   return (
-    <div className="space-y-8 px-10 py-12 text-zinc-700 transition-all">
+    <div className="flex h-full w-full flex-col gap-6 md:pb-6">
       <ProjectCover data={project} />
       <ProjectBoard id={params.id} />
     </div>
