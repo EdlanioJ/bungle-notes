@@ -34,11 +34,8 @@ export function ProjectCover({ data }: Props) {
 
   const statusCount = Object.entries(value.statusCount)
     .map(
-      ([key, value]) =>
-        ({
-          status: key,
-          count: value,
-        }) as { status: TaskStatus; count: number },
+      ([status, count]) =>
+        ({ status, count }) as { status: TaskStatus; count: number },
     )
     .reverse()
 
