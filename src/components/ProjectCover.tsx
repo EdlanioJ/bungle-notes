@@ -40,7 +40,7 @@ export function ProjectCover({ data }: Props) {
   )
   return (
     <div className="w-full space-y-2">
-      <h1 className="text-xl font-bold text-zinc-800">{value.name}</h1>
+      <h1 className="mt-2 text-xl font-bold text-zinc-800">{value.name}</h1>
       {value.description && (
         <p className="text-sm text-zinc-600">{value.description}</p>
       )}
@@ -51,7 +51,7 @@ export function ProjectCover({ data }: Props) {
           <h3>{totalTask}</h3>
         </div>
         {statusCount.map((status) => (
-          <div key={status.status}>
+          <div className="pl-2" key={status.status}>
             <p className="text-sm text-zinc-600">
               {statusToText[status.status]}
             </p>
