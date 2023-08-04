@@ -25,14 +25,14 @@ export function Nav() {
         <NavItem
           icon={LayoutDashboard}
           text="Boards"
-          selected={pathname === '/'}
+          active={pathname === '/'}
         />
       </Link>
       <Link href="/projects">
         <NavItem
           icon={FolderKanban}
           text="Projetos"
-          selected={pathname === '/projects'}
+          active={pathname === '/projects'}
         />
       </Link>
       <Link href="/">

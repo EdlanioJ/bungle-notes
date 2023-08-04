@@ -1,16 +1,20 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/cn'
 import type { Icon as LucidIcon } from 'lucide-react'
 
 type Props = {
   icon: LucidIcon
   text: string
-  selected?: boolean
+  active?: boolean
 }
-export function NavItem({ icon: Icon, text }: Props) {
+export function NavItem({ icon: Icon, text, active = false }: Props) {
   return (
     <div
-      className={clsx(
+      className={cn(
         'group relative ml-8 flex h-14 items-center gap-4 text-zinc-600 transition-all',
+        {
+          'ml-0 bg-zinc-200 text-blue-500 before:h-4 before:w-1.5 before:bg-blue-500 before:content-[""]':
+            active,
+        },
       )}
     >
       <Icon
