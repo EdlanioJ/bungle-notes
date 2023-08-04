@@ -12,7 +12,7 @@ export function NavItem({ icon: Icon, text, active = false }: Props) {
       className={cn(
         'group relative ml-8 flex h-14 items-center gap-4 text-zinc-600 transition-all',
         {
-          'ml-0 bg-zinc-200 text-blue-500 before:h-4 before:w-1.5 before:bg-blue-500 before:content-[""]':
+          'ml-0 bg-zinc-200 text-blue-500 before:h-8 before:w-1 before:bg-blue-500 before:content-[""]':
             active,
         },
       )}
