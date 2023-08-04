@@ -47,15 +47,15 @@ export function ProjectCover({ data }: Props) {
 
       <div className="mt-4 flex w-full justify-between gap-2 divide-x rounded-xl bg-white p-4 shadow-2xl transition-all duration-300 hover:shadow-none">
         <div className="flex-1">
-          <p className="text-sm text-zinc-600">Total</p>
-          <h3>{totalTask}</h3>
+          <p className="text-sm font-semibold text-zinc-500">Total</p>
+          <h3 className="text-lg font-bold text-zinc-700">{totalTask}</h3>
         </div>
         {statusCount.map((status) => (
-          <div className="flex-1 pl-2" key={status.status}>
-            <p className="text-sm text-zinc-600">
+          <div className="flex-1 px-2" key={status.status}>
+            <p className="text-sm font-semibold text-zinc-500">
               {statusToText[status.status]}
             </p>
-            <h3 className="text-sm font-bold text-zinc-600">{status.count}</h3>
+            <h3 className="text-lg font-bold text-zinc-700">{status.count}</h3>
           </div>
         ))}
       </div>
