@@ -52,7 +52,10 @@ export function ProjectCover({ data }: Props) {
           <h3 className="text-lg font-bold text-zinc-700">{totalTask}</h3>
         </div>
         {statusCount.map((status) => (
-          <div className="flex-1 px-2" key={status.status}>
+          <div
+            className="flex flex-1 flex-col items-center justify-center px-2"
+            key={status.status}
+          >
             <div className="flex items-center gap-2">
               {status.status === 'inProgress' && (
                 <Loader2 size={20} className="text-amber-400" />
