@@ -1,6 +1,7 @@
 'use client'
 
 import { useProjectStore } from '@/store/project'
+import { CheckCircle2, ListTodo, Loader2 } from 'lucide-react'
 import { useEffect } from 'react'
 
 const statusToText: {
@@ -52,9 +53,20 @@ export function ProjectCover({ data }: Props) {
         </div>
         {statusCount.map((status) => (
           <div className="flex-1 px-2" key={status.status}>
-            <p className="text-sm font-semibold text-zinc-500">
-              {statusToText[status.status]}
-            </p>
+            <div className="flex items-center gap-2">
+              {status.status === 'inProgress' && (
+                <Loader2 size={20} className="text-amber-400" />
+              )}
+              {status.status === 'done' && (
+                <CheckCircle2 size={20} className="text-green-600" />
+              )}
+              {status.status === 'todo' && (
+                <ListTodo size={20} className="text-red-400" />
+              )}
+              <p className="text-sm font-semibold text-zinc-500 md:max-lg:hidden">
+                {statusToText[status.status]}
+              </p>
+            </div>
             <h3 className="text-lg font-bold text-zinc-700">{status.count}</h3>
           </div>
         ))}
