@@ -48,25 +48,25 @@ export function ProjectCover({ data }: Props) {
 
       <div className="mt-4 flex w-full justify-between gap-2 divide-x-2 rounded-xl bg-white p-4 shadow-2xl transition-all duration-300 hover:shadow-none">
         <div className="flex flex-1 flex-col items-center justify-center">
-          <p className="text-sm font-semibold text-zinc-500">Total</p>
+          <p className="text-xs font-semibold text-zinc-500">Total</p>
           <h3 className="text-lg font-bold text-zinc-700">{totalTask}</h3>
         </div>
         {statusCount.map((status) => (
           <div
-            className="flex flex-1 flex-col items-center justify-center"
+            className="flex flex-1 flex-col items-center justify-center text-xs"
             key={status.status}
           >
             <div className="flex items-center gap-2">
               {status.status === 'inProgress' && (
-                <Loader2 size={20} className="text-amber-400" />
+                <Loader2 size={16} className="text-amber-400" />
               )}
               {status.status === 'done' && (
-                <CheckCircle2 size={20} className="text-green-600" />
+                <CheckCircle2 size={16} className="text-green-600" />
               )}
               {status.status === 'todo' && (
-                <ListTodo size={20} className="text-red-400" />
+                <ListTodo size={16} className="text-red-400" />
               )}
-              <p className="text-sm font-semibold text-zinc-500 md:max-lg:hidden">
+              <p className="font-semibold text-zinc-500 md:max-lg:hidden">
                 {statusToText[status.status]}
               </p>
             </div>
