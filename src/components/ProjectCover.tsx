@@ -32,13 +32,16 @@ export function ProjectCover({ data }: Props) {
     0,
   )
 
-  const statusCount = Object.entries(value.statusCount).map(
-    ([key, value]) =>
-      ({
-        status: key,
-        count: value,
-      }) as { status: TaskStatus; count: number },
-  )
+  const statusCount = Object.entries(value.statusCount)
+    .map(
+      ([key, value]) =>
+        ({
+          status: key,
+          count: value,
+        }) as { status: TaskStatus; count: number },
+    )
+    .reverse()
+
   return (
     <div className="w-full space-y-2">
       <h1 className="mt-2 text-xl font-bold text-zinc-800">{value.name}</h1>
@@ -51,7 +54,7 @@ export function ProjectCover({ data }: Props) {
           <p className="text-xs font-semibold text-zinc-500">Total</p>
           <h3 className="text-lg font-bold text-zinc-700">{totalTask}</h3>
         </div>
-        {statusCount.reverse().map((status) => (
+        {statusCount.map((status) => (
           <div
             className="flex flex-1 flex-col items-center justify-center text-xs"
             key={status.status}
