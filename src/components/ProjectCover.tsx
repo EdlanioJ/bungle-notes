@@ -39,7 +39,7 @@ export function ProjectCover({ data }: Props) {
       }) as { status: TaskStatus; count: number },
   )
   return (
-    <div className="w-full">
+    <div className="w-full space-y-2">
       <h1 className="text-xl font-bold text-zinc-800">{value.name}</h1>
       {value.description && (
         <p className="text-sm text-zinc-600">{value.description}</p>
