@@ -45,7 +45,7 @@ export function ProjectCover({ data }: Props) {
         <p className="text-sm text-zinc-600">{value.description}</p>
       )}
 
-      <div className="mt-4 flex w-full divide-x rounded-xl bg-white p-2 transition-all duration-300 hover:shadow-none">
+      <div className="mt-4 flex w-full justify-between divide-x rounded-xl bg-white p-2 transition-all duration-300 hover:shadow-none">
         <div>
           <p>Total</p>
           <h3>{totalTask}</h3>
