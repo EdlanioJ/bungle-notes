@@ -36,7 +36,11 @@ export function Nav() {
         />
       </Link>
       <Link href="/">
-        <NavItem icon={LineChart} text="Relatórios" />
+        <NavItem
+          icon={LineChart}
+          text="Relatórios"
+          active={pathname === '/analytics'}
+        />
       </Link>
       <Link href="/">
         <NavItem icon={Cog} text="Ajustes" />
