@@ -3,12 +3,13 @@
 import { PlusIcon } from 'lucide-react'
 import { Button } from './Button'
 import { useModalStore } from '@/store/modal'
+import { Heading } from './Heading'
 
 export function ProjectHeader() {
   const handleOpenModal = useModalStore((store) => store.openCreateProjectModal)
   return (
     <div className="flex justify-between">
-      <h1 className="text-xl font-bold text-zinc-800">Projetos</h1>
+      <Heading>Projetos</Heading>
       <Button
         onClick={handleOpenModal}
         className="h-8 w-auto gap-1 px-2 text-xs font-bold"

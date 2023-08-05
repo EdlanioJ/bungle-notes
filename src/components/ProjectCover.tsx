@@ -3,6 +3,7 @@
 import { useProjectStore } from '@/store/project'
 import { CheckCircle2, ListTodo, Loader2 } from 'lucide-react'
 import { useEffect } from 'react'
+import { Heading } from './Heading'
 
 const statusToText: {
   [key in TaskStatus]: string
@@ -41,7 +42,7 @@ export function ProjectCover({ data }: Props) {
 
   return (
     <div className="w-full space-y-2">
-      <h1 className="mt-2 text-xl font-bold text-zinc-800">{value.name}</h1>
+      <Heading className="mt-2">{value.name}</Heading>
       {value.description && (
         <p className="text-sm text-zinc-600">{value.description}</p>
       )}
