@@ -59,14 +59,13 @@ export const taskRouter = createTRPCRouter({
         content: z.string().nonempty(),
         name: z.string().nonempty(),
         date: z.date(),
-        tags: z.array(z.string()),
+        tags: z.array(z.object({ value: z.string(), color: z.string() })),
         status: z.enum(['todo', 'inProgress', 'done']),
         projectId: z.string().nonempty().cuid(),
       }),
     )
     .mutation(async ({ ctx, input }) => {
       const userId = ctx.session.user.id
-      const tags = input.tags.join(', ')
       const task = await ctx.prisma.task.create({
         data: {
           content: input.content,
@@ -74,7 +73,7 @@ export const taskRouter = createTRPCRouter({
           date: input.date,
           status: input.status,
           projectId: input.projectId,
-          tags,
+          tags: [...input.tags],
           userId,
         },
         include: { project: { select: { name: true } } },

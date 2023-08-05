@@ -18,7 +18,7 @@ const createTaskFormSchema = z.object({
   status: z.enum(['todo', 'inProgress', 'done'], {
     required_error: 'O status é obrigatório',
   }),
-  tags: z.array(z.string()),
+  tags: z.array(z.object({ value: z.string(), color: z.string() })),
   content: z.string().nonempty('O detalhe é obrigatório'),
   name: z.string().nonempty('O nome é obrigatório'),
 })
