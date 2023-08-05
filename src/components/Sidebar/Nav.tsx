@@ -35,7 +35,7 @@ export function Nav() {
           active={pathname === '/projects'}
         />
       </Link>
-      <Link href="/">
+      <Link href="/analytics">
         <NavItem
           icon={LineChart}
           text="Relatórios"
