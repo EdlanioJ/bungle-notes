@@ -2,6 +2,7 @@
 
 import { Fragment, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
+import { usePathname } from 'next/navigation'
 import { z } from 'zod'
 import { Controller, type FieldErrors, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -26,6 +27,7 @@ const createTaskFormSchema = z.object({
 type CreateTaskFormData = z.infer<typeof createTaskFormSchema>
 
 export function CreateTaskModal() {
+  const pathname = usePathname()
   const [isCreateTaskModalOpen, closeCreateTaskModal] = useModalStore(
     (store) => [store.isCreateTaskModalOpen, store.closeCreateTaskModal],
   )
@@ -77,6 +79,16 @@ export function CreateTaskModal() {
         if (!oldData) return [data]
         return [data, ...oldData]
       })
+
+      if (pathname.includes('/projects/')) {
+        apiUtils.task.getUserTasksByProject.setData(
+          { projectId: data.project.id },
+          (oldData) => {
+            if (!oldData) return [data]
+            return [data, ...oldData]
+          },
+        )
+      }
 
       increaseStateCount(data.status, data.project.id)
       toast.success(`Tarefa ${data.name} criada com sucesso`)
