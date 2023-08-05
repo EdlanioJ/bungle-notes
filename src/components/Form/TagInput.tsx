@@ -3,19 +3,51 @@
 import { X } from 'lucide-react'
 import { type KeyboardEvent, useState } from 'react'
 import { Input } from './Input'
+import { cn } from '@/utils/cn'
+
+const COLORS = [
+  'bg-blue-500',
+  'bg-orange-500',
+  'bg-emerald-500',
+  'bg-violet-500',
+  'bg-pink-500',
+]
 
 type Props = {
-  value: string[]
-  onChange: (tags: string[]) => void
+  value: Tag[]
+  onChange: (tags: Tag[]) => void
 }
 export function TagInput({ value, onChange }: Props) {
+  // const [tag, setTag] = useState<Tag>()
   const [tag, setTag] = useState('')
+  const [usedColors, setUsedColors] = useState<string[]>([])
+
+  const addTag = () => {
+    if (tag.trim() !== '' && !value.some((res) => res.value === tag)) {
+      let randomColor = ''
+
+      if (usedColors.length === COLORS.length) {
+        setUsedColors([])
+      }
+
+      do {
+        randomColor = COLORS[
+          Math.floor(Math.random() * COLORS.length)
+        ] as string
+      } while (usedColors.includes(randomColor))
+
+      setUsedColors([...usedColors, randomColor])
+
+      onChange([...value, { color: randomColor, value: tag }])
+      setTag('')
+    }
+  }
 
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter' && tag !== '') {
+    if (event.key === 'Enter') {
       event.preventDefault()
-      onChange([...value, tag])
-      setTag('')
+
+      addTag()
     }
   }
 
@@ -42,9 +74,12 @@ export function TagInput({ value, onChange }: Props) {
           value.map((tag, index) => (
             <span
               key={index}
-              className="flex items-center gap-1 rounded-lg bg-violet-200 px-2 py-1 text-center text-xs text-violet-600"
+              className={cn(
+                'flex items-center gap-1 rounded-xl px-2 py-1 text-xs font-semibold text-white',
+                tag.color,
+              )}
             >
-              {tag}
+              {tag.value}
               <X
                 onClick={() => handleDeleteTag(index)}
                 className="w-4 cursor-pointer"
