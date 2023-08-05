@@ -8,7 +8,11 @@ type TaskWithProject = DBTask & {
 
 export class TaskMapper {
   public static map(task: TaskWithProject): Task {
-    const tags = task.tags.trim() === '' ? [] : task.tags.trim().split(', ')
+    let tags: Tag[] = []
+    if (typeof task.tags === 'object' && Array.isArray(task.tags)) {
+      const tagsObj = task.tags as Tag[]
+      tags = [...tagsObj]
+    }
 
     return {
       id: task.id,

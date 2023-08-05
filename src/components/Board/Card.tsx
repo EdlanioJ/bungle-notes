@@ -1,5 +1,6 @@
 'use client'
 
+import { cn } from '@/utils/cn'
 import { Draggable } from 'react-beautiful-dnd'
 
 type Props = {
@@ -16,13 +17,16 @@ export function Card({ data, index }: Props) {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
-          <div className="flex gap-1">
+          <div className="flex flex-wrap gap-1">
             {data.tags.map((tag, index) => (
               <span
                 key={index}
-                className="cursor-pointer rounded-lg bg-violet-600 px-2 py-1 text-xs text-white"
+                className={cn(
+                  'cursor-pointer rounded-xl px-2 py-1 text-xs font-semibold text-white',
+                  tag.color,
+                )}
               >
-                {tag}
+                {tag.value}
               </span>
             ))}
           </div>
