@@ -20,7 +20,7 @@ export function Nav() {
   }
 
   return (
-    <nav className="relative top-6 flex h-[92vh] flex-col overflow-hidden rounded-xl bg-white transition-all duration-300 hover:shadow-none md:h-[86vh] md:shadow-2xl">
+    <nav className="relative top-6 flex h-[92vh] flex-col overflow-hidden bg-white transition-all duration-300 hover:shadow-none md:h-[86vh] md:rounded-xl md:shadow-2xl">
       <Link href="/">
         <NavItem
           icon={LayoutDashboard}
