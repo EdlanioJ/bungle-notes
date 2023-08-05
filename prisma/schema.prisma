@@ -2,8 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-    provider        = "prisma-client-js"
-    previewFeatures = ["jsonProtocol"]
+    provider = "prisma-client-js"
 }
 
 datasource db {
@@ -42,7 +41,7 @@ model Task {
     id        String     @id @default(cuid())
     name      String
     content   String     @db.Text
-    tags      String     @db.Text
+    tags      Json       @db.Json
     userId    String
     projectId String
     status    TaskStatus

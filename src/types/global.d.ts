@@ -5,6 +5,11 @@ declare global {
 
   type StatusCount = { [status in TaskStatus]: number }
 
+  type Tag = {
+    value: string
+    color: string
+  }
+
   interface Project {
     id: string
     name: string
@@ -19,7 +24,7 @@ declare global {
     name: string
     project: { id: string; name: string }
     content: string
-    tags: string[]
+    tags: Tag[]
     status: TaskStatus
   }
 
