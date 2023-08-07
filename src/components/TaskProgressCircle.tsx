@@ -30,10 +30,14 @@ export function TaskProgressCircle({ size = 150, data }: Props) {
       {Object.entries(percentages).map(([status, percentage]) => {
         const endAngle = startAngle + percentage * 3.6 // 3.6 degrees per percentage
         const largeArcFlag = percentage > 50 ? 1 : 0 // Use a large arc if percentage is greater than 50
-        const x1 = size + radius * Math.cos((startAngle - 90) * (Math.PI / 180))
-        const y1 = size + radius * Math.sin((startAngle - 90) * (Math.PI / 180))
-        const x2 = size + radius * Math.cos((endAngle - 90) * (Math.PI / 180))
-        const y2 = size + radius * Math.sin((endAngle - 90) * (Math.PI / 180))
+        const x1 =
+          size / 2 + radius * Math.cos((startAngle - 90) * (Math.PI / 180))
+        const y1 =
+          size / 2 + radius * Math.sin((startAngle - 90) * (Math.PI / 180))
+        const x2 =
+          size / 2 + radius * Math.cos((endAngle - 90) * (Math.PI / 180))
+        const y2 =
+          size / 2 + radius * Math.sin((endAngle - 90) * (Math.PI / 180))
 
         startAngle = endAngle - 0.1
         return (
