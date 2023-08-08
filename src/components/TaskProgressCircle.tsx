@@ -28,8 +28,8 @@ export function TaskProgressCircle({ size = 150, data }: Props) {
   return (
     <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
       {Object.entries(percentages).map(([status, percentage]) => {
-        const endAngle = startAngle + percentage * 3.6 // 3.6 degrees per percentage
-        const largeArcFlag = percentage > 50 ? 1 : 0 // Use a large arc if percentage is greater than 50
+        const endAngle = startAngle + percentage * 3.6
+        const largeArcFlag = percentage > 50 ? 1 : 0
         const x1 =
           size / 2 + radius * Math.cos((startAngle - 90) * (Math.PI / 180))
         const y1 =
@@ -54,6 +54,19 @@ export function TaskProgressCircle({ size = 150, data }: Props) {
           />
         )
       })}
+
+      <g transform={`translate(${size / 2},${size / 2})`}>
+        <text
+          textAnchor="middle"
+          fontSize="34"
+          className="fill-zinc-700 font-bold"
+        >
+          24
+        </text>
+        <text y="30" textAnchor="middle" className="fill-zinc-400 text-sm">
+          Projetos
+        </text>
+      </g>
     </svg>
   )
 }
