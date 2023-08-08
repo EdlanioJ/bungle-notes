@@ -24,38 +24,53 @@ export function TaskProgressCircle({ size = 150, data }: Props) {
   const STROKE_WIDTH = 10
   const radius = (size - STROKE_WIDTH) / 2
   const percentages = getPercentages(data.taskStatusCount)
+  const totalPercentage = Object.values(percentages).reduce(
+    (total, percentage) => total + percentage,
+    0,
+  )
+
   let startAngle = 0
   return (
     <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
-      {Object.entries(percentages).map(([status, percentage]) => {
-        if (percentage === 0) return null
+      {totalPercentage === 0 ? (
+        <circle
+          cx={size / 2}
+          cy={size / 2}
+          r={(size - STROKE_WIDTH) / 2}
+          className="fill-none stroke-zinc-200"
+          strokeWidth={STROKE_WIDTH}
+        />
+      ) : (
+        Object.entries(percentages).map(([status, percentage]) => {
+          if (percentage === 0) return null
 
-        const endAngle = startAngle + percentage * 3.6
-        const largeArcFlag = percentage > 50 ? 1 : 0
-        const x1 =
-          size / 2 + radius * Math.cos((startAngle - 90) * (Math.PI / 180))
-        const y1 =
-          size / 2 + radius * Math.sin((startAngle - 90) * (Math.PI / 180))
-        const x2 =
-          size / 2 + radius * Math.cos((endAngle - 90) * (Math.PI / 180))
-        const y2 =
-          size / 2 + radius * Math.sin((endAngle - 90) * (Math.PI / 180))
+          const endAngle = startAngle + percentage * 3.6
+          const largeArcFlag = percentage >= 100 ? 1 : percentage > 50 ? 1 : 0
+          const x1 =
+            size / 2 + radius * Math.cos((startAngle - 90) * (Math.PI / 180))
+          const y1 =
+            size / 2 + radius * Math.sin((startAngle - 90) * (Math.PI / 180))
+          const x2 =
+            size / 2 + radius * Math.cos((endAngle - 90) * (Math.PI / 180))
+          const y2 =
+            size / 2 + radius * Math.sin((endAngle - 90) * (Math.PI / 180))
 
-        startAngle = endAngle - 0.1
-        return (
-          <path
-            key={status}
-            d={`M ${x1} ${y1} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2} ${y2}`}
-            fill="none"
-            strokeWidth={STROKE_WIDTH}
-            className={cn({
-              'stroke-green-600': status === 'done',
-              'stroke-red-500': status === 'todo',
-              'stroke-amber-500': status === 'inProgress',
-            })}
-          />
-        )
-      })}
+          startAngle = endAngle - 0.1
+          return (
+            <path
+              key={status}
+              d={`M ${x1} ${y1} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2} ${y2}`}
+              fill="none"
+              strokeWidth={STROKE_WIDTH}
+              className={cn({
+                'stroke-green-600': status === 'done',
+                'stroke-red-500': status === 'todo',
+                'stroke-amber-500': status === 'inProgress',
+              })}
+            />
+          )
+        })
+      )}
 
       <g transform={`translate(${size / 2},${size / 2})`}>
         <text
