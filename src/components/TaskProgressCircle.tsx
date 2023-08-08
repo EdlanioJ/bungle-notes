@@ -2,7 +2,7 @@ import { cn } from '@/utils/cn'
 
 type Props = {
   size?: number
-  data: StatusCount
+  data: { projectCount: number; taskStatusCount: StatusCount }
 }
 
 const getPercentages = (statusCount: StatusCount): StatusCount => {
@@ -23,7 +23,7 @@ const getPercentages = (statusCount: StatusCount): StatusCount => {
 export function TaskProgressCircle({ size = 150, data }: Props) {
   const STROKE_WIDTH = 10
   const radius = (size - STROKE_WIDTH) / 2
-  const percentages = getPercentages(data)
+  const percentages = getPercentages(data.taskStatusCount)
   let startAngle = 0
   return (
     <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
@@ -61,7 +61,7 @@ export function TaskProgressCircle({ size = 150, data }: Props) {
           fontSize="48"
           className="fill-zinc-700 font-bold"
         >
-          24
+          {data.projectCount}
         </text>
         <text
           y="30"
@@ -69,7 +69,7 @@ export function TaskProgressCircle({ size = 150, data }: Props) {
           fontSize="16"
           className="fill-zinc-400 font-semibold"
         >
-          Projetos
+          {data.projectCount <= 1 ? 'Projeto' : 'Projetos'}
         </text>
       </g>
     </svg>
