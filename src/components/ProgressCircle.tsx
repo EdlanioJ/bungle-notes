@@ -20,7 +20,7 @@ const getPercentages = (statusCount: StatusCount): StatusCount => {
   return percentages
 }
 
-export function TaskProgressCircle({ size = 150, data }: Props) {
+export function ProgressCircle({ size = 150, data }: Props) {
   const STROKE_WIDTH = 10
   const radius = (size - STROKE_WIDTH) / 2
   const percentages = getPercentages(data.taskStatusCount)
