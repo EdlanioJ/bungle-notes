@@ -43,6 +43,20 @@ export function TaskProgressCircle({ size = 150, data }: Props) {
       ) : (
         Object.entries(percentages).map(([status, percentage]) => {
           if (percentage === 0) return null
+          if (percentage === 100)
+            return (
+              <circle
+                cx={size / 2}
+                cy={size / 2}
+                r={(size - STROKE_WIDTH) / 2}
+                className={cn('fill-none', {
+                  'stroke-green-600': status === 'done',
+                  'stroke-red-500': status === 'todo',
+                  'stroke-amber-500': status === 'inProgress',
+                })}
+                strokeWidth={STROKE_WIDTH}
+              />
+            )
 
           const endAngle = startAngle + percentage * 3.6
           const largeArcFlag = percentage >= 100 ? 1 : percentage > 50 ? 1 : 0
