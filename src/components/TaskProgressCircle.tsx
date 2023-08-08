@@ -56,13 +56,18 @@ export function TaskProgressCircle({ size = 150, data }: Props) {
       })}
 
       <g transform={`translate(${size / 2},${size / 2})`}>
-        <text textAnchor="middle" className="fill-zinc-700 text-5xl font-bold">
+        <text
+          textAnchor="middle"
+          fontSize="48"
+          className="fill-zinc-700 font-bold"
+        >
           24
         </text>
         <text
           y="30"
           textAnchor="middle"
-          className="fill-zinc-400 text-sm font-semibold"
+          fontSize="16"
+          className="fill-zinc-400 font-semibold"
         >
           Projetos
         </text>
