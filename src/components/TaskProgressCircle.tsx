@@ -28,6 +28,8 @@ export function TaskProgressCircle({ size = 150, data }: Props) {
   return (
     <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
       {Object.entries(percentages).map(([status, percentage]) => {
+        if (percentage === 0) return null
+
         const endAngle = startAngle + percentage * 3.6
         const largeArcFlag = percentage > 50 ? 1 : 0
         const x1 =
