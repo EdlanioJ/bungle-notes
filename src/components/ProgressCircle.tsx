@@ -50,9 +50,9 @@ export function ProgressCircle({ size = 150, data }: Props) {
                 cy={size / 2}
                 r={(size - STROKE_WIDTH) / 2}
                 className={cn('fill-none', {
-                  'bg-red-400': status === 'todo',
-                  'bg-amber-400': status === 'inProgress',
-                  'bg-green-600': status === 'done',
+                  'stroke-red-400': status === 'todo',
+                  'stroke-amber-400': status === 'inProgress',
+                  'stroke-green-600': status === 'done',
                 })}
                 strokeWidth={STROKE_WIDTH}
               />
@@ -77,9 +77,9 @@ export function ProgressCircle({ size = 150, data }: Props) {
               fill="none"
               strokeWidth={STROKE_WIDTH}
               className={cn({
+                'stroke-red-400': status === 'todo',
+                'stroke-amber-400': status === 'inProgress',
                 'stroke-green-600': status === 'done',
-                'stroke-red-500': status === 'todo',
-                'stroke-amber-500': status === 'inProgress',
               })}
             />
           )
