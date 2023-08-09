@@ -28,7 +28,7 @@ export default async function Analytics() {
   return (
     <div className="flex h-full w-full flex-col gap-6 md:pb-6">
       <Heading>Relatórios</Heading>
-      <div className="flex w-full flex-col gap-2 overflow-hidden rounded-xl bg-white p-4 shadow-2xl transition-all duration-300 hover:shadow-none">
+      <div className="flex w-full flex-col gap-4 overflow-hidden rounded-xl bg-white p-4 shadow-2xl transition-all duration-300 hover:shadow-none">
         <div className="flex w-full items-center justify-center">
           <ProgressCircle data={projectAndTaskStatusCount} />
         </div>
@@ -39,7 +39,9 @@ export default async function Analytics() {
                 key={status}
                 className="flex flex-1 flex-col items-center justify-center gap-1"
               >
-                <span className="text-xl font-bold text-zinc-700">{count}</span>
+                <span className="text-2xl font-bold text-zinc-700">
+                  {count}
+                </span>
                 <div className="flex items-center gap-1">
                   <div
                     className={cn('h-2 w-2 rounded-full shadow-2xl', {
