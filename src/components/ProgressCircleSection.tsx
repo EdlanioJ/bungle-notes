@@ -1,7 +1,7 @@
 'use client'
 
 import { cn } from '@/utils/cn'
-import { Cell, Pie, PieChart } from 'recharts'
+import { Cell, Legend, Pie, PieChart } from 'recharts'
 
 const SIZE = 150
 const statusToText: {
@@ -12,10 +12,10 @@ const statusToText: {
   done: 'Feito',
 }
 
-type CenterProps = {
+type CustomLegendProps = {
   projectCount: number
 }
-function Center({ projectCount }: CenterProps) {
+function CustomLegend({ projectCount }: CustomLegendProps) {
   return (
     <g transform={`translate(${SIZE / 2},${SIZE / 2})`}>
       <text
@@ -72,7 +72,8 @@ export function ProgressCircleSection({ data }: Props) {
               />
             ))}
           </Pie>
-          <Center projectCount={data.projectCount} />
+
+          <Legend content={<CustomLegend projectCount={data.projectCount} />} />
         </PieChart>
       </div>
       <div className="flex justify-around gap-2">
