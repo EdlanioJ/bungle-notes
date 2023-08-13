@@ -30,12 +30,8 @@ export function ProgressCircleSection({ data }: Props) {
         <PieChart width={150} height={150}>
           <Pie
             data={statusData}
-            cx={75}
-            cy={75}
-            width={150}
-            height={150}
-            innerRadius={60}
-            outerRadius={70}
+            innerRadius={65}
+            outerRadius={75}
             fill="none"
             dataKey="count"
           >
