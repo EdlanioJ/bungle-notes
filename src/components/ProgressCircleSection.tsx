@@ -1,7 +1,7 @@
 'use client'
 
 import { cn } from '@/utils/cn'
-import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts'
+import { Cell, Pie, PieChart } from 'recharts'
 
 const statusToText: {
   [key in TaskStatus]: string
@@ -26,7 +26,7 @@ export function ProgressCircleSection({ data }: Props) {
   )
   return (
     <section className="flex w-full flex-col gap-4 overflow-hidden rounded-xl bg-white p-4 shadow-2xl transition-all duration-300 hover:shadow-none">
-      <ResponsiveContainer width={'100%'} aspect={3}>
+      <div className="flex w-full items-center justify-center">
         <PieChart width={150} height={150}>
           <Pie
             data={statusData}
@@ -48,7 +48,7 @@ export function ProgressCircleSection({ data }: Props) {
             ))}
           </Pie>
         </PieChart>
-      </ResponsiveContainer>
+      </div>
       <div className="flex justify-around gap-2">
         {Object.entries(data.taskStatusCount).map(([status, count]) => (
           <div
