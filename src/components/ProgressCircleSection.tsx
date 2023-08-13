@@ -34,7 +34,8 @@ export function ProgressCircleSection({ data }: Props) {
             cy={75}
             width={150}
             height={150}
-            innerRadius={45}
+            innerRadius={60}
+            outerRadius={70}
             fill="none"
             dataKey="count"
           >
