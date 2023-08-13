@@ -50,12 +50,15 @@ export function ProgressCircleSection({ data }: Props) {
       count,
     }),
   )
+
+  const statusCount = statusData.reduce((acc, { count }) => acc + count, 0)
   return (
     <section className="flex w-full flex-col gap-4 overflow-hidden rounded-xl bg-white p-4 shadow-2xl transition-all duration-300 hover:shadow-none">
       <div className="flex w-full items-center justify-center">
         <PieChart width={SIZE} height={SIZE}>
           <Pie
             data={statusData}
+            stroke=""
             innerRadius={SIZE / 2 - 10}
             outerRadius={SIZE / 2}
             fill="none"
@@ -73,6 +76,21 @@ export function ProgressCircleSection({ data }: Props) {
             ))}
             <Label content={<CustomLabel projectCount={data.projectCount} />} />
           </Pie>
+
+          {statusCount === 0 && (
+            <Pie
+              data={[{ name: 'No Data', value: 1 }]}
+              dataKey="value"
+              stroke=""
+              innerRadius={SIZE / 2 - 10}
+              outerRadius={SIZE / 2}
+              className="fill-zinc-200"
+            >
+              <Label
+                content={<CustomLabel projectCount={data.projectCount} />}
+              />
+            </Pie>
+          )}
         </PieChart>
       </div>
       <div className="flex justify-around gap-2">
