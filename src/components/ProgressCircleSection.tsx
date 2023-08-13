@@ -32,7 +32,9 @@ export function ProgressCircleSection({ data }: Props) {
             data={statusData}
             cx={75}
             cy={75}
-            innerRadius={40}
+            width={150}
+            height={150}
+            innerRadius={45}
             fill="none"
             dataKey="count"
           >
