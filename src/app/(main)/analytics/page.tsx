@@ -1,5 +1,6 @@
 import { Heading } from '@/components/Heading'
 import { ProgressCircle } from '@/components/ProgressCircle'
+import { ProgressCircleSection } from '@/components/ProgressCircleSection'
 import { ssgHelper } from '@/server/helpers/ssgHelper'
 import { cn } from '@/utils/cn'
 
@@ -28,6 +29,8 @@ export default async function Analytics() {
   return (
     <div className="flex h-full w-full flex-col gap-6 md:pb-6">
       <Heading>Relatórios</Heading>
+
+      <ProgressCircleSection data={projectAndTaskStatusCount} />
       <div className="flex w-full flex-col gap-4 overflow-hidden rounded-xl bg-white p-4 shadow-2xl transition-all duration-300 hover:shadow-none">
         <div className="flex w-full items-center justify-center">
           <ProgressCircle data={projectAndTaskStatusCount} />
