@@ -99,7 +99,7 @@ export function ProgressCircleSection({ data }: Props) {
             key={status}
             className="flex flex-1 flex-col items-center justify-center gap-1"
           >
-            <span className="text-2xl font-bold text-zinc-700">{count}</span>
+            <span className="text-xl font-bold text-zinc-700">{count}</span>
             <div className="flex items-center gap-1">
               <div
                 className={cn('h-2 w-2 rounded-full shadow-2xl', {
