@@ -27,7 +27,7 @@ export default function Icon() {
       >
         <span tw="antialiased font-code uppercase">
           <span tw="text-pink-600">K</span>
-          <span tw="text-zinc-600 dark:font-zinc-50">4</span>
+          <span tw="text-zinc-500 dark:font-zinc-50">4</span>
           <span tw="text-teal-600">D</span>
         </span>
       </div>
