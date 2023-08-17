@@ -21,7 +21,7 @@ export default async function Analytics() {
     <div className="flex h-full w-full flex-col gap-6 md:pb-6">
       <Heading>Relatórios</Heading>
 
-      <div className="flex flex-col gap-6 xl:flex-row">
+      <div className="flex flex-col gap-6 2xl:flex-row">
         <ProgressCircleSection data={projectAndTaskStatusCount} />
         <WeeklyBarChartSection />
       </div>
