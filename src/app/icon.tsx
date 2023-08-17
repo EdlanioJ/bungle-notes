@@ -15,20 +15,21 @@ export default function Icon() {
     (
       <div
         style={{
-          background:
-            'linear-gradient(180deg, rgba(219,39,119,1) 50%, rgba(13,148,136,1) 50%)',
           width: '100%',
           height: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          color: '#f4f4f5',
-          fontSize: 24,
           fontWeight: '700',
-          borderRadius: 8,
+          textAlign: 'center',
+          fontSize: 10,
         }}
       >
-        <span tw="font-code">K</span>
+        <span tw="antialiased font-code uppercase">
+          <span tw="text-pink-600">K</span>
+          <span tw="text-zinc-600 dark:font-zinc-100">4</span>
+          <span tw="text-teal-600">D</span>
+        </span>
       </div>
     ),
     {
