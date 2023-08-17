@@ -22,12 +22,12 @@ export default function Icon() {
           justifyContent: 'center',
           fontWeight: '700',
           textAlign: 'center',
-          fontSize: 16,
+          fontSize: 24,
         }}
       >
         <span tw="antialiased font-code uppercase">
           <span tw="text-pink-600">K</span>
-          <span tw="text-zinc-600 dark:font-zinc-100">4</span>
+          <span tw="text-zinc-600 dark:font-zinc-50">4</span>
           <span tw="text-teal-600">D</span>
         </span>
       </div>
