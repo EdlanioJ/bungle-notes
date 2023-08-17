@@ -1,5 +1,6 @@
 import { Heading } from '@/components/Heading'
 import { ProgressCircleSection } from '@/components/ProgressCircleSection'
+import { WeeklyBarChartSection } from '@/components/WeeklyBarChartSection'
 import { ssgHelper } from '@/server/helpers/ssgHelper'
 
 async function getData() {
@@ -21,6 +22,7 @@ export default async function Analytics() {
       <Heading>Relatórios</Heading>
 
       <ProgressCircleSection data={projectAndTaskStatusCount} />
+      <WeeklyBarChartSection />
     </div>
   )
 }
