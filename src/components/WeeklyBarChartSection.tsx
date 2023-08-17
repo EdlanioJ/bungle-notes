@@ -14,7 +14,7 @@ const data = [
 
 export function WeeklyBarChartSection() {
   return (
-    <section className="flex w-full flex-col gap-4 overflow-hidden rounded-xl bg-white p-4 shadow-2xl transition-all duration-300 hover:shadow-none">
+    <section className="flex w-full flex-col items-center justify-center gap-4 overflow-hidden rounded-xl bg-white p-4 shadow-2xl transition-all duration-300 hover:shadow-none">
       <BarChart width={360} height={240} data={data}>
         <Bar dataKey="value" className="fill-blue-500" background />
         <XAxis
