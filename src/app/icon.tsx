@@ -22,7 +22,7 @@ export default function Icon() {
           justifyContent: 'center',
           fontWeight: '700',
           textAlign: 'center',
-          fontSize: 10,
+          fontSize: 16,
         }}
       >
         <span tw="antialiased font-code uppercase">
