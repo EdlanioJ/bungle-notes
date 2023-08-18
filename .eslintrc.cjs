@@ -18,6 +18,7 @@ const config = {
   rules: {
     'no-void': 'off',
     camelcase: 'off',
+    '@typescript-eslint/no-namespace': 'off',
   },
 }
 

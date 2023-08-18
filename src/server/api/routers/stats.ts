@@ -1,3 +1,4 @@
+import { WeeklyTaskCountMapper } from '../mappers/stats'
 import { createTRPCRouter, protectedProcedure } from '../trpc'
 
 export const statsRouter = createTRPCRouter({
@@ -18,5 +19,26 @@ export const statsRouter = createTRPCRouter({
       { done: 0, inProgress: 0, todo: 0 },
     )
     return { projectCount, taskStatusCount }
+  }),
+
+  weeklyTaskCount: protectedProcedure.query(async ({ ctx }) => {
+    const userId = ctx.session.user.id
+    const sevenDaysAgo = new Date()
+    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 6)
+    sevenDaysAgo.setHours(0, 0, 0, 0)
+
+    const stats = await ctx.prisma.task.groupBy({
+      by: ['createdAt'],
+      where: {
+        deletedAt: null,
+        userId,
+      },
+
+      having: {
+        createdAt: { gte: new Date(sevenDaysAgo) },
+      },
+    })
+
+    return WeeklyTaskCountMapper.map(stats)
   }),
 })
