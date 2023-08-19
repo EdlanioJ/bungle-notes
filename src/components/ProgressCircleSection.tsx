@@ -61,6 +61,7 @@ export function ProgressCircleSection({ data }: Props) {
             stroke=""
             innerRadius={SIZE / 2 - 16}
             outerRadius={SIZE / 2}
+            cornerRadius={16}
             fill="none"
             dataKey="count"
           >

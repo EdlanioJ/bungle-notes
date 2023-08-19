@@ -18,7 +18,12 @@ export function WeeklyBarChartSection() {
         ) : (
           <ResponsiveContainer width="100%" height="100%">
             <BarChart width={360} height={240} barSize={16} data={data}>
-              <Bar dataKey="count" className="fill-blue-500" background />
+              <Bar
+                dataKey="count"
+                className="fill-blue-500"
+                radius={16}
+                background={{ fill: '#d4d4d8', radius: 16 }}
+              />
               <XAxis
                 dataKey="label"
                 axisLine={false}
