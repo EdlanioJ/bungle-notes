@@ -1,0 +1,21 @@
+'use client'
+
+import { Table, TableHead, TableHeader, TableRow } from './ui/table'
+
+export function LastTaskSection() {
+  return (
+    <section className="flex flex-col gap-2 rounded-lg bg-white p-4 shadow-2xl transition-all duration-300 hover:shadow-none">
+      <p className="text-xs font-bold text-zinc-700">Últimas Tarefas</p>
+
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Tarefa</TableHead>
+            <TableHead>Projeto</TableHead>
+            <TableHead>Status</TableHead>
+          </TableRow>
+        </TableHeader>
+      </Table>
+    </section>
+  )
+}

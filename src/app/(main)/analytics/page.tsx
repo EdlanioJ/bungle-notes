@@ -1,5 +1,5 @@
 import { Heading } from '@/components/Heading'
-import { LastTaskTable } from '@/components/LastTaskTable'
+import { LastTaskSection } from '@/components/LastTaskSection'
 import { ProgressCircleSection } from '@/components/ProgressCircleSection'
 import { WeeklyBarChartSection } from '@/components/WeeklyBarChartSection'
 
@@ -18,7 +18,7 @@ export default function Analytics() {
         <ProgressCircleSection />
         <WeeklyBarChartSection />
       </div>
-      <LastTaskTable />
+      <LastTaskSection />
     </div>
   )
 }
