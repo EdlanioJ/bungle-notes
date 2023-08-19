@@ -1,7 +1,7 @@
 'use client'
 
 import { api } from '@/utils/api'
-import { Bar, BarChart, XAxis } from 'recharts'
+import { Bar, BarChart, ResponsiveContainer, XAxis } from 'recharts'
 import { Spinner } from './Spinner'
 
 export function WeeklyBarChartSection() {
@@ -16,15 +16,17 @@ export function WeeklyBarChartSection() {
             <Spinner size="md" />
           </Spinner.Container>
         ) : (
-          <BarChart width={360} height={240} data={data}>
-            <Bar dataKey="count" className="fill-blue-500" background />
-            <XAxis
-              dataKey="label"
-              axisLine={false}
-              tickLine={false}
-              className="text-xs font-bold text-zinc-500"
-            />
-          </BarChart>
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart width={360} height={240} barSize={20} data={data}>
+              <Bar dataKey="count" className="fill-blue-500" background />
+              <XAxis
+                dataKey="label"
+                axisLine={false}
+                tickLine={false}
+                className="text-xs font-bold text-zinc-500"
+              />
+            </BarChart>
+          </ResponsiveContainer>
         )}
       </div>
     </section>
