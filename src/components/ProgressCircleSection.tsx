@@ -59,7 +59,7 @@ export function ProgressCircleSection({ data }: Props) {
           <Pie
             data={statusData}
             stroke=""
-            innerRadius={SIZE / 2 - 20}
+            innerRadius={SIZE / 2 - 16}
             outerRadius={SIZE / 2}
             fill="none"
             dataKey="count"

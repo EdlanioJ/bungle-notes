@@ -17,7 +17,7 @@ export function WeeklyBarChartSection() {
           </Spinner.Container>
         ) : (
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart width={360} height={240} barSize={20} data={data}>
+            <BarChart width={360} height={240} barSize={16} data={data}>
               <Bar dataKey="count" className="fill-blue-500" background />
               <XAxis
                 dataKey="label"
