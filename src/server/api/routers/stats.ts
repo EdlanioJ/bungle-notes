@@ -14,10 +14,12 @@ export const statsRouter = createTRPCRouter({
       }),
     ])
 
-    const taskStatusCount: StatusCount = taskStatusCountRes.reduce(
-      (acc, value) => ({ ...acc, [value.status]: value._count.status }),
-      { done: 0, inProgress: 0, todo: 0 },
-    )
+    const taskStatusCount: { status: TaskStatus; count: number }[] =
+      taskStatusCountRes.map((value) => ({
+        status: value.status,
+        count: value._count.status,
+      }))
+
     return { projectCount, taskStatusCount }
   }),
 
