@@ -13,7 +13,7 @@ export function WeeklyBarChartSection() {
       <div className="flex h-[240px] items-center justify-center">
         {isLoading ? (
           <Spinner.Container>
-            <Spinner />
+            <Spinner size="md" />
           </Spinner.Container>
         ) : (
           <BarChart width={360} height={240} data={data}>
