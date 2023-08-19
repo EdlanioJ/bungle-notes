@@ -1,7 +1,7 @@
 'use client'
 
 import { cn } from '@/utils/cn'
-import { Cell, Label, Pie, PieChart, ResponsiveContainer } from 'recharts'
+import { Cell, Label, Pie, PieChart } from 'recharts'
 
 const SIZE = 200
 const statusToText: {
