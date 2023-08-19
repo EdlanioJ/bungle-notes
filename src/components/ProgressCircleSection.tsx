@@ -1,9 +1,9 @@
 'use client'
 
 import { cn } from '@/utils/cn'
-import { Cell, Label, Pie, PieChart } from 'recharts'
+import { Cell, Label, Pie, PieChart, ResponsiveContainer } from 'recharts'
 
-const SIZE = 150
+const SIZE = 200
 const statusToText: {
   [key in TaskStatus]: string
 } = {
@@ -53,13 +53,13 @@ export function ProgressCircleSection({ data }: Props) {
 
   const statusCount = statusData.reduce((acc, { count }) => acc + count, 0)
   return (
-    <section className="flex w-full flex-col gap-4 overflow-hidden rounded-xl bg-white p-4 shadow-2xl transition-all duration-300 hover:shadow-none">
+    <section className="flex w-full flex-col gap-2 overflow-hidden rounded-xl bg-white p-4 shadow-2xl transition-all duration-300 hover:shadow-none">
       <div className="flex w-full items-center justify-center">
         <PieChart width={SIZE} height={SIZE}>
           <Pie
             data={statusData}
             stroke=""
-            innerRadius={SIZE / 2 - 10}
+            innerRadius={SIZE / 2 - 20}
             outerRadius={SIZE / 2}
             fill="none"
             dataKey="count"
@@ -82,7 +82,7 @@ export function ProgressCircleSection({ data }: Props) {
               data={[{ name: 'No Data', value: 1 }]}
               dataKey="value"
               stroke=""
-              innerRadius={SIZE / 2 - 10}
+              innerRadius={SIZE / 2 - 20}
               outerRadius={SIZE / 2}
               className="fill-zinc-200"
             >
@@ -99,7 +99,7 @@ export function ProgressCircleSection({ data }: Props) {
             key={status}
             className="flex flex-1 flex-col items-center justify-center gap-1"
           >
-            <span className="text-xl font-bold text-zinc-700">{count}</span>
+            <span className="text-sm font-bold text-zinc-700">{count}</span>
             <div className="flex items-center gap-1">
               <div
                 className={cn('h-2 w-2 rounded-full shadow-2xl', {
