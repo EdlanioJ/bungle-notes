@@ -59,6 +59,7 @@ export function ProgressCircleSection({ data }: Props) {
           <Pie
             data={statusData}
             stroke=""
+            isAnimationActive={false}
             innerRadius={SIZE / 2 - 16}
             outerRadius={SIZE / 2}
             cornerRadius={16}

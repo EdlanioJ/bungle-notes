@@ -19,6 +19,7 @@ export function WeeklyBarChartSection() {
           <ResponsiveContainer width="100%" height="100%">
             <BarChart width={360} height={240} barSize={16} data={data}>
               <Bar
+                isAnimationActive={false}
                 dataKey="count"
                 className="fill-blue-500"
                 radius={16}
