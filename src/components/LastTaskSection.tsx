@@ -72,11 +72,13 @@ export function LastTaskSection() {
                   </span>
                 </TableCell>
                 <TableCell>
-                  {task.createdAt.toLocaleDateString('pt-BR', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                  })}
+                  <p className="truncate">
+                    {task.createdAt.toLocaleDateString('pt-BR', {
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric',
+                    })}
+                  </p>
                 </TableCell>
               </TableRow>
             ))}
