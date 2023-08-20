@@ -18,7 +18,7 @@ export function LastTaskSection() {
         <TableHeader>
           <TableRow>
             <TableHead>Tarefa</TableHead>
-            <TableHead className="hidden">Projeto</TableHead>
+            <TableHead className="md:max-xl:hidden">Projeto</TableHead>
             <TableHead>Status</TableHead>
             <TableHead>Data</TableHead>
           </TableRow>
@@ -28,7 +28,9 @@ export function LastTaskSection() {
             <TableCell className="font-semibold">
               <p className="truncate">Bem Vindo</p>
             </TableCell>
-            <TableCell className="hidden">Default</TableCell>
+            <TableCell className="md:max-xl:hidden">
+              <p className="truncate">Default</p>
+            </TableCell>
             <TableCell>
               <span className="rounded-xl bg-green-600 px-2 py-1 text-xs font-semibold text-white">
                 Feito
