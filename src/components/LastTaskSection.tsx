@@ -51,13 +51,11 @@ export function LastTaskSection() {
           <TableBody>
             {data.map((task) => (
               <TableRow key={task.id} className="text-xs">
-                <TableCell className="font-semibold">
-                  <p className="truncate">{task.name}</p>
+                <TableCell className="font-semibold">{task.name}</TableCell>
+                <TableCell className="hidden xl:block">
+                  {task.project.name}
                 </TableCell>
-                <TableCell className="md:max-xl:hidden">
-                  <p className="truncate">{task.project.name}</p>
-                </TableCell>
-                <TableCell>
+                <TableCell className="hidden md:block">
                   <span
                     className={cn(
                       'rounded-xl px-2 py-1 text-xs font-semibold text-white',
@@ -72,13 +70,11 @@ export function LastTaskSection() {
                   </span>
                 </TableCell>
                 <TableCell>
-                  <p className="truncate">
-                    {task.createdAt.toLocaleDateString('pt-BR', {
-                      year: 'numeric',
-                      month: 'short',
-                      day: 'numeric',
-                    })}
-                  </p>
+                  {task.createdAt.toLocaleDateString('pt-BR', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                  })}
                 </TableCell>
               </TableRow>
             ))}
