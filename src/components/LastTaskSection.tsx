@@ -25,7 +25,9 @@ export function LastTaskSection() {
         </TableHeader>
         <TableBody>
           <TableRow className="text-xs">
-            <TableCell className="font-semibold">Bem Vindo</TableCell>
+            <TableCell className="font-semibold">
+              <p className="truncate">Bem Vindo</p>
+            </TableCell>
             <TableCell className="hidden">Default</TableCell>
             <TableCell>
               <span className="rounded-xl bg-green-600 px-2 py-1 text-xs font-semibold text-white">
