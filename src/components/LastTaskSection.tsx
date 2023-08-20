@@ -24,7 +24,7 @@ export function LastTaskSection() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          <TableRow>
+          <TableRow className="text-xs">
             <TableCell className="font-semibold">Bem Vindo</TableCell>
             <TableCell>Default</TableCell>
             <TableCell>Feito</TableCell>
