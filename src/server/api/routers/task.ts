@@ -108,4 +108,16 @@ export const taskRouter = createTRPCRouter({
         select: { id: true },
       })
     }),
+
+  lastTasks: protectedProcedure.query(async ({ ctx }) => {
+    const userId = ctx.session.user.id
+    const tasks = await ctx.prisma.task.findMany({
+      where: { userId, deletedAt: null },
+      orderBy: { createdAt: 'desc' },
+      take: 6,
+      include: { project: { select: { name: true } } },
+    })
+
+    return TaskMapper.mapCollection(tasks)
+  }),
 })

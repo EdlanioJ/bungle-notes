@@ -21,6 +21,7 @@ export class TaskMapper {
       name: task.name,
       project: { id: task.projectId, name: task.project.name },
       tags,
+      createdAt: task.createdAt,
     }
   }
 
