@@ -1,6 +1,13 @@
 'use client'
 
-import { Table, TableHead, TableHeader, TableRow } from './ui/table'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from './ui/table'
 
 export function LastTaskSection() {
   return (
@@ -13,8 +20,17 @@ export function LastTaskSection() {
             <TableHead>Tarefa</TableHead>
             <TableHead>Projeto</TableHead>
             <TableHead>Status</TableHead>
+            <TableHead>Data</TableHead>
           </TableRow>
         </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableCell className="font-semibold">Bem Vindo</TableCell>
+            <TableCell>Default</TableCell>
+            <TableCell>Feito</TableCell>
+            <TableCell>11/07/2023</TableCell>
+          </TableRow>
+        </TableBody>
       </Table>
     </section>
   )
