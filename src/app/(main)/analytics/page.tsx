@@ -14,7 +14,7 @@ export default function Analytics() {
     <div className="flex h-full w-full flex-col gap-6 md:pb-6">
       <Heading>Relatórios</Heading>
 
-      <div className="flex flex-col gap-6 2xl:flex-row">
+      <div className="grid grid-cols-2 grid-rows-1 gap-6 2xl:grid-cols-1 2xl:grid-rows-2">
         <ProgressCircleSection />
         <WeeklyBarChartSection />
       </div>
