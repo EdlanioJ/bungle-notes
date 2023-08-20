@@ -43,8 +43,8 @@ export function LastTaskSection() {
           <TableHeader>
             <TableRow>
               <TableHead>Tarefa</TableHead>
-              <TableHead className="md:max-xl:hidden">Projeto</TableHead>
-              <TableHead>Status</TableHead>
+              <TableHead className="hidden xl:block">Projeto</TableHead>
+              <TableHead className="hidden md:block">Status</TableHead>
               <TableHead>Data</TableHead>
             </TableRow>
           </TableHeader>
