@@ -18,7 +18,7 @@ export function LastTaskSection() {
         <TableHeader>
           <TableRow>
             <TableHead>Tarefa</TableHead>
-            <TableHead>Projeto</TableHead>
+            <TableHead className="hidden">Projeto</TableHead>
             <TableHead>Status</TableHead>
             <TableHead>Data</TableHead>
           </TableRow>
@@ -26,7 +26,7 @@ export function LastTaskSection() {
         <TableBody>
           <TableRow className="text-xs">
             <TableCell className="font-semibold">Bem Vindo</TableCell>
-            <TableCell>Default</TableCell>
+            <TableCell className="hidden">Default</TableCell>
             <TableCell>Feito</TableCell>
             <TableCell>11/07/2023</TableCell>
           </TableRow>
