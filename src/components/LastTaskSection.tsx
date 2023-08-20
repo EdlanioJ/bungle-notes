@@ -43,8 +43,8 @@ export function LastTaskSection() {
           <TableHeader>
             <TableRow>
               <TableHead>Tarefa</TableHead>
-              <TableHead className="hidden xl:block">Projeto</TableHead>
-              <TableHead className="hidden md:block">Status</TableHead>
+              <TableHead className="hidden xl:inline-block">Projeto</TableHead>
+              <TableHead className="hidden md:inline-block">Status</TableHead>
               <TableHead>Data</TableHead>
             </TableRow>
           </TableHeader>
@@ -52,10 +52,10 @@ export function LastTaskSection() {
             {data.map((task) => (
               <TableRow key={task.id} className="text-xs">
                 <TableCell className="font-semibold">{task.name}</TableCell>
-                <TableCell className="hidden xl:block">
+                <TableCell className="hidden xl:inline-block">
                   {task.project.name}
                 </TableCell>
-                <TableCell className="hidden md:block">
+                <TableCell className="hidden md:inline-block">
                   <span
                     className={cn(
                       'rounded-xl px-2 py-1 text-xs font-semibold text-white',
