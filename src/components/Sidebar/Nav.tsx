@@ -42,8 +42,8 @@ export function Nav() {
           active={pathname === '/analytics'}
         />
       </Link>
-      <Link href="/">
-        <NavItem icon={Cog} text="Ajustes" />
+      <Link href="/settings">
+        <NavItem icon={Cog} text="Ajustes" active={pathname === '/settings'} />
       </Link>
       <button
         onClick={handleSignOut}
