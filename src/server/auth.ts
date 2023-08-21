@@ -48,6 +48,31 @@ export const authOptions: NextAuthOptions = {
         username: user.username,
       },
     }),
+
+    async jwt({ token, trigger, user }) {
+      if (trigger === 'signUp') {
+        await prisma.project.create({
+          data: {
+            name: 'Default',
+            slug: 'default',
+            description: 'This is the default project',
+            userId: user.id,
+            tasks: {
+              create: {
+                name: 'Account created successfully',
+                content:
+                  'Welcome to Kanban4Dev platform, here you can create and manager the tasks for your projects',
+                date: new Date(),
+                status: 'done',
+                tags: [{ value: 'welcome', color: 'bg-blue-500' }],
+                userId: user.id,
+              },
+            },
+          },
+        })
+      }
+      return token
+    },
   },
   adapter: PrismaAdapter(prisma),
   providers: [
