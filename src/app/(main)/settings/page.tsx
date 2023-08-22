@@ -25,8 +25,8 @@ export default async function Settings() {
               className="rounded-full"
             />
             <div className="text-xs">
-              <strong>{session?.user.name}</strong>
-              <p className="text-zinc-500">DEV</p>
+              <strong className="text-zinc-700">{session?.user.name}</strong>
+              <p className="font-semibold text-zinc-500">DEV</p>
             </div>
           </div>
 
