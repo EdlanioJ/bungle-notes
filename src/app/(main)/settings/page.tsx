@@ -16,7 +16,7 @@ export default async function Settings() {
         <strong className="text-xs text-zinc-700">Meu Perfil</strong>
 
         <div className="flex items-center justify-between">
-          <div className="flex gap-2">
+          <div className="flex items-center gap-2">
             <Image
               alt="Profiles Pic"
               width={126}
@@ -30,7 +30,7 @@ export default async function Settings() {
             </div>
           </div>
 
-          <button className="flex gap-1 border border-zinc-500 px-2 py-1">
+          <button className="flex gap-1 rounded-lg border border-zinc-500 px-2 py-1 text-xs text-zinc-600">
             Editar
             <Pencil />
           </button>
