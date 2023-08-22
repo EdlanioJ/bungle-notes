@@ -24,15 +24,15 @@ export default async function Settings() {
               src={session?.user.image as string}
               className="rounded-full"
             />
-            <div>
+            <div className="text-xs">
               <strong>{session?.user.name}</strong>
-              <p>DEV</p>
+              <p className="text-zinc-500">DEV</p>
             </div>
           </div>
 
-          <button className="flex gap-1 rounded-full border-2 border-zinc-500 px-2 py-1 text-xs font-semibold text-zinc-600">
+          <button className="flex items-center gap-1 rounded-full border-2 border-zinc-500 px-2 py-1 text-xs font-semibold text-zinc-600">
             Editar
-            <Pencil size={10} />
+            <Pencil size={16} />
           </button>
         </div>
       </section>
