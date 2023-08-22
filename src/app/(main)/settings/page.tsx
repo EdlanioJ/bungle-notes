@@ -26,13 +26,13 @@ export default async function Settings() {
             />
             <div>
               <strong>{session?.user.name}</strong>
-              <span>DEV</span>
+              <p>DEV</p>
             </div>
           </div>
 
-          <button className="flex gap-1 rounded-lg border border-zinc-500 px-2 py-1 text-xs text-zinc-600">
+          <button className="flex gap-1 rounded-full border-2 border-zinc-500 px-2 py-1 text-xs font-semibold text-zinc-600">
             Editar
-            <Pencil />
+            <Pencil size={10} />
           </button>
         </div>
       </section>
